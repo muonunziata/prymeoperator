@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       PrymeOperator
  * Description:       Secure file operator for WordPress: server file manager, media library folders and reversible, audited operations.
- * Version:           0.2.0
+ * Version:           0.2.1
  * Requires at least: 6.4
  * Requires PHP:      8.1
  * Author:            PrymeOperator
@@ -14,7 +14,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'PRYMEOPERATOR_VERSION', '0.2.0' );
+define( 'PRYMEOPERATOR_VERSION', '0.2.1' );
 define( 'PRYMEOPERATOR_FILE', __FILE__ );
 define( 'PRYMEOPERATOR_DIR', plugin_dir_path( __FILE__ ) );
 define( 'PRYMEOPERATOR_URL', plugin_dir_url( __FILE__ ) );
