@@ -1,0 +1,6 @@
+.po-app h1 { margin-bottom: 12px; }
+.po-toolbar { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+.po-breadcrumb { font-family: monospace; }
+.po-breadcrumb .po-sep { margin: 0 4px; color: #757575; }
+.po-table td .dashicons { color: #757575; vertical-align: text-bottom; }
+.po-preview { max-height: 70vh; overflow: auto; background: #f6f7f7; padding: 12px; font-size: 12px; white-space: pre; }
