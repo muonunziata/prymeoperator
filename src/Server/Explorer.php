@@ -1,7 +1,9 @@
 <?php
 namespace PrymeOperator\Server;
 
+use PrymeOperator\Operator\Vault;
 use PrymeOperator\Security\Jail;
+use PrymeOperator\Security\JailException;
 
 /**
  * Read-only view of the server filesystem, always through the Jail.
@@ -11,13 +13,17 @@ final class Explorer {
 
 	public const PREVIEW_LIMIT = 1048576; // 1 MB.
 
-	public function __construct( private Jail $jail ) {}
+	public function __construct(
+		private Jail $jail,
+		private ?Vault $vault = null,
+		private bool $show_hidden = true,
+	) {}
 
 	/**
 	 * @return array{path: string, entries: array<int, array<string, mixed>>}
 	 */
 	public function list( string $relative ): array {
-		$dir = $this->jail->resolve( $relative );
+		$dir = $this->resolve( $relative );
 		if ( ! is_dir( $dir ) ) {
 			throw new ExplorerException( 'Not a directory.', 404 );
 		}
@@ -27,7 +33,10 @@ final class Explorer {
 
 		$entries = [];
 		foreach ( new \DirectoryIterator( $dir ) as $item ) {
-			if ( $item->isDot() ) {
+			if ( $item->isDot() || ( ! $this->show_hidden && str_starts_with( $item->getFilename(), '.' ) ) ) {
+				continue;
+			}
+			if ( $this->vault && $this->vault->contains( $item->getPathname() ) ) {
 				continue;
 			}
 			try {
@@ -53,7 +62,7 @@ final class Explorer {
 	 * @return array<string, mixed>
 	 */
 	public function read( string $relative ): array {
-		$file = $this->jail->resolve( $relative );
+		$file = $this->resolve( $relative );
 		if ( ! is_file( $file ) ) {
 			throw new ExplorerException( 'Not a file.', 404 );
 		}
@@ -77,6 +86,25 @@ final class Explorer {
 		}
 
 		return $info + [ 'content' => $content, 'reason' => $reason ];
+	}
+
+	/**
+	 * Absolute path of an existing file for streaming (download / inline preview).
+	 */
+	public function file_path( string $relative ): string {
+		$file = $this->resolve( $relative );
+		if ( ! is_file( $file ) ) {
+			throw new ExplorerException( 'Not a file.', 404 );
+		}
+		return $file;
+	}
+
+	private function resolve( string $relative ): string {
+		$abs = $this->jail->resolve( $relative );
+		if ( $this->vault && $this->vault->contains( $abs ) ) {
+			throw new JailException( 'Path is protected.' );
+		}
+		return $abs;
 	}
 
 	/**

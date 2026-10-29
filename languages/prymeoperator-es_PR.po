@@ -1,0 +1,821 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es_PR\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Something went wrong."
+msgstr "Algo salió mal."
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "OK"
+msgstr "Aceptar"
+
+msgid "Owner"
+msgstr "Propietario"
+
+msgid "Group"
+msgstr "Grupo"
+
+msgid "Public"
+msgstr "Público"
+
+msgid "Read"
+msgstr "Lectura"
+
+msgid "Write"
+msgstr "Escritura"
+
+msgid "Execute"
+msgstr "Ejecución"
+
+msgid "Permissions: %s"
+msgstr "Permisos: %s"
+
+msgid "Numeric value"
+msgstr "Valor numérico"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "Location"
+msgstr "Ubicación"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Folder"
+msgstr "Carpeta"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Size"
+msgstr "Tamaño"
+
+msgid "Modified"
+msgstr "Modificado"
+
+msgid "Permissions"
+msgstr "Permisos"
+
+msgid "Writable"
+msgstr "Con permiso de escritura"
+
+msgid "Yes"
+msgstr "Sí"
+
+msgid "No"
+msgstr "No"
+
+msgid "Properties"
+msgstr "Propiedades"
+
+msgid "Previous"
+msgstr "Anterior"
+
+msgid "Next"
+msgstr "Siguiente"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Download"
+msgstr "Descargar"
+
+msgid "%s saved."
+msgstr "%s guardado."
+
+msgid "Version loaded. Save to keep it."
+msgstr "Versión cargada. Guarda para conservarla."
+
+msgid "Discard unsaved changes?"
+msgstr "¿Descartar los cambios sin guardar?"
+
+msgid "This file is too large to edit here."
+msgstr "Este archivo es demasiado grande para editarlo aquí."
+
+msgid "Binary file: it cannot be edited as text."
+msgstr "Archivo binario: no se puede editar como texto."
+
+msgid "Read only"
+msgstr "Solo lectura"
+
+msgid "Unsaved changes"
+msgstr "Cambios sin guardar"
+
+msgid "All changes saved"
+msgstr "Todos los cambios guardados"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Uploads finished"
+msgstr "Subidas terminadas"
+
+msgid "Collapse"
+msgstr "Contraer"
+
+msgid "Expand"
+msgstr "Expandir"
+
+msgid "New folder"
+msgstr "Nueva carpeta"
+
+msgid "Folder name"
+msgstr "Nombre de la carpeta"
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Folder created."
+msgstr "Carpeta creada."
+
+msgid "New file"
+msgstr "Nuevo archivo"
+
+msgid "File name"
+msgstr "Nombre del archivo"
+
+msgid "File created."
+msgstr "Archivo creado."
+
+msgid "Rename"
+msgstr "Renombrar"
+
+msgid "New name"
+msgstr "Nuevo nombre"
+
+msgid "Renamed."
+msgstr "Renombrado."
+
+msgid "Pasted."
+msgstr "Pegado."
+
+msgid "Moved."
+msgstr "Movido."
+
+msgid "Duplicated."
+msgstr "Duplicado."
+
+msgid "Move to trash"
+msgstr "Mover a la papelera"
+
+msgid "\"%s\" will be moved to the trash. You can restore it later."
+msgstr "«%s» se moverá a la papelera. Podrás restaurarlo más tarde."
+
+msgid "%d items will be moved to the trash. You can restore them later."
+msgstr "%d elementos se moverán a la papelera. Podrás restaurarlos más tarde."
+
+msgid "Undo"
+msgstr "Deshacer"
+
+msgid "Restored."
+msgstr "Restaurado."
+
+msgid "Compress to ZIP"
+msgstr "Comprimir en ZIP"
+
+msgid "Archive name"
+msgstr "Nombre del archivo ZIP"
+
+msgid "Compress"
+msgstr "Comprimir"
+
+msgid "Compressing…"
+msgstr "Comprimiendo…"
+
+msgid "Archive created."
+msgstr "Archivo ZIP creado."
+
+msgid "Extracting…"
+msgstr "Descomprimiendo…"
+
+msgid "Archive extracted."
+msgstr "Archivo ZIP descomprimido."
+
+msgid "Permissions changed."
+msgstr "Permisos cambiados."
+
+msgid "Path copied."
+msgstr "Ruta copiada."
+
+msgid "Open"
+msgstr "Abrir"
+
+msgid "Open / preview"
+msgstr "Abrir / vista previa"
+
+msgid "View code"
+msgstr "Ver código"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Cut"
+msgstr "Cortar"
+
+msgid "Paste into folder"
+msgstr "Pegar en la carpeta"
+
+msgid "Duplicate"
+msgstr "Duplicar"
+
+msgid "Extract here"
+msgstr "Descomprimir aquí"
+
+msgid "Permissions…"
+msgstr "Permisos…"
+
+msgid "Copy path"
+msgstr "Copiar ruta"
+
+msgid "Upload files"
+msgstr "Subir archivos"
+
+msgid "Paste"
+msgstr "Pegar"
+
+msgid "Refresh"
+msgstr "Actualizar"
+
+msgid "Select all"
+msgstr "Seleccionar todo"
+
+msgid "File actions"
+msgstr "Acciones de archivo"
+
+msgid "Back"
+msgstr "Atrás"
+
+msgid "Up one level"
+msgstr "Subir un nivel"
+
+msgid "Refresh (F5)"
+msgstr "Actualizar (F5)"
+
+msgid "Upload"
+msgstr "Subir"
+
+msgid "Copy (Ctrl+C)"
+msgstr "Copiar (Ctrl+C)"
+
+msgid "Cut (Ctrl+X)"
+msgstr "Cortar (Ctrl+X)"
+
+msgid "Paste (Ctrl+V)"
+msgstr "Pegar (Ctrl+V)"
+
+msgid "Rename (F2)"
+msgstr "Renombrar (F2)"
+
+msgid "Move to trash (Del)"
+msgstr "Mover a la papelera (Supr)"
+
+msgid "Extract ZIP"
+msgstr "Descomprimir ZIP"
+
+msgid "Search in this folder…"
+msgstr "Buscar en esta carpeta…"
+
+msgid "Also search inside text files"
+msgstr "Buscar también dentro de archivos de texto"
+
+msgid "Content"
+msgstr "Contenido"
+
+msgid "List view"
+msgstr "Vista de lista"
+
+msgid "Grid view"
+msgstr "Vista de cuadrícula"
+
+msgid "Root"
+msgstr "Raíz"
+
+msgid "Clear"
+msgstr "Borrar"
+
+msgid "Go to root"
+msgstr "Ir a la raíz"
+
+msgid "Nothing matches your search."
+msgstr "Nada coincide con tu búsqueda."
+
+msgid "This folder is empty."
+msgstr "Esta carpeta está vacía."
+
+msgid "Drop files here to upload them."
+msgstr "Suelta archivos aquí para subirlos."
+
+msgid "link"
+msgstr "enlace"
+
+msgid "Not writable"
+msgstr "Sin permiso de escritura"
+
+msgid "%d to copy"
+msgstr "%d para copiar"
+
+msgid "%d to move"
+msgstr "%d para mover"
+
+msgid "Folders"
+msgstr "Carpetas"
+
+msgid "Drop to upload to this folder"
+msgstr "Suelta para subir a esta carpeta"
+
+msgid "Disk space"
+msgstr "Espacio en disco"
+
+msgid "free of %1$s (%2$d%% used)"
+msgstr "libres de %1$s (%2$d%% usado)"
+
+msgid "The server does not report disk space."
+msgstr "El servidor no informa del espacio en disco."
+
+msgid "Trash"
+msgstr "Papelera"
+
+msgid "items · %s"
+msgstr "elementos · %s"
+
+msgid "Open trash"
+msgstr "Abrir papelera"
+
+msgid "Uploads"
+msgstr "Subidas"
+
+msgid "No limit"
+msgstr "Sin límite"
+
+msgid "Large files are sent in pieces, so the server limit of %s per request does not apply."
+msgstr "Los archivos grandes se envían por partes, así que no se aplica el límite del servidor de %s por petición."
+
+msgid "Health check"
+msgstr "Estado del sistema"
+
+msgid "Root folder: %s"
+msgstr "Carpeta raíz: %s"
+
+msgid "ZIP support available"
+msgstr "Soporte ZIP disponible"
+
+msgid "ZIP support missing"
+msgstr "Falta soporte ZIP"
+
+msgid "Install the PHP zip extension to compress and extract."
+msgstr "Instala la extensión zip de PHP para comprimir y descomprimir."
+
+msgid "File changes are disabled (DISALLOW_FILE_MODS)"
+msgstr "Los cambios de archivos están desactivados (DISALLOW_FILE_MODS)"
+
+msgid "File changes allowed"
+msgstr "Cambios de archivos permitidos"
+
+msgid "Code editing is disabled (DISALLOW_FILE_EDIT)"
+msgstr "La edición de código está desactivada (DISALLOW_FILE_EDIT)"
+
+msgid "Code editing allowed, with syntax check and automatic rollback"
+msgstr "Edición de código permitida, con revisión de sintaxis y restauración automática"
+
+msgid "Recent activity"
+msgstr "Actividad reciente"
+
+msgid "No activity yet."
+msgstr "Aún no hay actividad."
+
+msgid "See all activity"
+msgstr "Ver toda la actividad"
+
+msgid "Deleted files stay here until they expire or you empty the trash."
+msgstr "Los archivos borrados se quedan aquí hasta que caducan o vacías la papelera."
+
+msgid "Empty trash"
+msgstr "Vaciar papelera"
+
+msgid "The trash is empty."
+msgstr "La papelera está vacía."
+
+msgid "Original location"
+msgstr "Ubicación original"
+
+msgid "Deleted"
+msgstr "Borrado"
+
+msgid "Deleted by"
+msgstr "Borrado por"
+
+msgid "Restored to /%s"
+msgstr "Restaurado en /%s"
+
+msgid "Restore"
+msgstr "Restaurar"
+
+msgid "Delete forever"
+msgstr "Borrar para siempre"
+
+msgid "Everything in the trash will be deleted permanently. This cannot be undone."
+msgstr "Todo lo que hay en la papelera se borrará de forma permanente. No se puede deshacer."
+
+msgid "\"%s\" will be deleted permanently. This cannot be undone."
+msgstr "«%s» se borrará de forma permanente. No se puede deshacer."
+
+msgid "Delete permanently"
+msgstr "Borrar permanentemente"
+
+msgid "Deleted permanently."
+msgstr "Borrado permanentemente."
+
+msgid "Filter"
+msgstr "Filtrar"
+
+msgid "All actions"
+msgstr "Todas las acciones"
+
+msgid "When"
+msgstr "Cuándo"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "Action"
+msgstr "Acción"
+
+msgid "Target"
+msgstr "Objetivo"
+
+msgid "Page %1$d of %2$d"
+msgstr "Página %1$d de %2$d"
+
+msgid "Settings saved."
+msgstr "Ajustes guardados."
+
+msgid "Create files and folders"
+msgstr "Crear archivos y carpetas"
+
+msgid "Move"
+msgstr "Mover"
+
+msgid "Delete (to trash)"
+msgstr "Borrar (a la papelera)"
+
+msgid "Compress and extract"
+msgstr "Comprimir y descomprimir"
+
+msgid "Edit text files"
+msgstr "Editar archivos de texto"
+
+msgid "General"
+msgstr "General"
+
+msgid "Where PrymeOperator starts and how it looks."
+msgstr "Dónde empieza PrymeOperator y cómo se ve."
+
+msgid "Root folder"
+msgstr "Carpeta raíz"
+
+msgid "Set by the PRYMEOPERATOR_ROOT constant in wp-config.php."
+msgstr "Definida por la constante PRYMEOPERATOR_ROOT en wp-config.php."
+
+msgid "Absolute path. Leave empty for the WordPress folder (%s)."
+msgstr "Ruta absoluta. Déjala vacía para usar la carpeta de WordPress (%s)."
+
+msgid "Theme"
+msgstr "Tema"
+
+msgid "Follow system"
+msgstr "Según el sistema"
+
+msgid "Light"
+msgstr "Claro"
+
+msgid "Dark"
+msgstr "Oscuro"
+
+msgid "Default view"
+msgstr "Vista predeterminada"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Grid"
+msgstr "Cuadrícula"
+
+msgid "Show hidden files (starting with a dot)"
+msgstr "Mostrar archivos ocultos (que empiezan por punto)"
+
+msgid "Access for other roles"
+msgstr "Acceso para otros roles"
+
+msgid "Administrators always have full access. Roles you enable here only see their folder and can only do what you allow. They can never upload blocked file types, edit code or change permissions."
+msgstr "Los administradores siempre tienen acceso completo. Los roles que actives aquí solo ven su carpeta y solo pueden hacer lo que permitas. Nunca pueden subir tipos de archivo bloqueados, editar código ni cambiar permisos."
+
+msgid "Roles with access"
+msgstr "Roles con acceso"
+
+msgid "Their folder"
+msgstr "Su carpeta"
+
+msgid "Relative to the root folder. It must exist."
+msgstr "Relativa a la carpeta raíz. Debe existir."
+
+msgid "What they can do"
+msgstr "Qué pueden hacer"
+
+msgid "Uploads and file types"
+msgstr "Subidas y tipos de archivo"
+
+msgid "Maximum upload size (MB)"
+msgstr "Tamaño máximo de subida (MB)"
+
+msgid "0 means no limit. Files are uploaded in pieces, so this can be larger than the server limit."
+msgstr "0 significa sin límite. Los archivos se suben por partes, así que puede ser mayor que el límite del servidor."
+
+msgid "Blocked file types"
+msgstr "Tipos de archivo bloqueados"
+
+msgid "Comma separated. A name is blocked if any of its extensions is listed, so \"shell.php.jpg\" counts as PHP."
+msgstr "Separados por comas. Un nombre se bloquea si cualquiera de sus extensiones está en la lista, así que «shell.php.jpg» cuenta como PHP."
+
+msgid "Administrators may upload and create blocked file types"
+msgstr "Los administradores pueden subir y crear tipos bloqueados"
+
+msgid "Safety net"
+msgstr "Red de seguridad"
+
+msgid "How PrymeOperator protects you from mistakes."
+msgstr "Cómo te protege PrymeOperator de los errores."
+
+msgid "Check PHP syntax before saving"
+msgstr "Revisar la sintaxis PHP antes de guardar"
+
+msgid "Files with syntax errors are not saved."
+msgstr "Los archivos con errores de sintaxis no se guardan."
+
+msgid "Restore automatically if a PHP change breaks the site"
+msgstr "Restaurar automáticamente si un cambio en PHP rompe el sitio"
+
+msgid "After saving, the site is loaded once; if it fails, the previous version is put back."
+msgstr "Después de guardar se carga el sitio una vez; si falla, se vuelve a poner la versión anterior."
+
+msgid "Versions kept per file"
+msgstr "Versiones guardadas por archivo"
+
+msgid "Days to keep items in the trash"
+msgstr "Días que se guardan los elementos en la papelera"
+
+msgid "0 keeps them until you empty the trash."
+msgstr "0 los guarda hasta que vacíes la papelera."
+
+msgid "Notifications"
+msgstr "Notificaciones"
+
+msgid "E-mail me when files are deleted"
+msgstr "Avisarme por correo cuando se borren archivos"
+
+msgid "Send to"
+msgstr "Enviar a"
+
+msgid "Leave empty to use the site administrator e-mail."
+msgstr "Déjalo vacío para usar el correo del administrador del sitio."
+
+msgid "Uninstall"
+msgstr "Desinstalación"
+
+msgid "Delete all PrymeOperator data when the plugin is deleted"
+msgstr "Borrar todos los datos de PrymeOperator al eliminar el plugin"
+
+msgid "Activity log, trash, versions and settings. Your own files are never touched."
+msgstr "Registro de actividad, papelera, versiones y ajustes. Tus archivos nunca se tocan."
+
+msgid "Save settings"
+msgstr "Guardar ajustes"
+
+msgid "Files"
+msgstr "Archivos"
+
+msgid "Dashboard"
+msgstr "Panel"
+
+msgid "Activity"
+msgstr "Actividad"
+
+msgid "Settings"
+msgstr "Ajustes"
+
+msgid "You can only restore items you deleted."
+msgstr "Solo puedes restaurar elementos que borraste tú."
+
+msgid "That path is outside the allowed folder."
+msgstr "Esa ruta está fuera de la carpeta permitida."
+
+msgid "Not saved: PHP syntax error. %s"
+msgstr "No se guardó: error de sintaxis PHP. %s"
+
+msgid "This change broke the site, so the previous version was restored automatically."
+msgstr "Este cambio rompía el sitio, así que se restauró automáticamente la versión anterior."
+
+msgid "Saved, but the site could not be checked after saving."
+msgstr "Guardado, pero no se pudo comprobar el sitio después de guardar."
+
+msgid "Upload failed."
+msgstr "La subida falló."
+
+msgid "PrymeOperator"
+msgstr "PrymeOperator"
+
+msgid "You do not have permission to use PrymeOperator."
+msgstr "No tienes permiso para usar PrymeOperator."
+
+msgid "The root folder must be an absolute path to an existing folder."
+msgstr "La carpeta raíz debe ser una ruta absoluta a una carpeta existente."
+
+msgid "%1$s moved these items to the PrymeOperator trash on %2$s:"
+msgstr "%1$s movió estos elementos a la papelera de PrymeOperator en %2$s:"
+
+msgid "They can be restored from the Trash tab."
+msgstr "Se pueden restaurar desde la pestaña Papelera."
+
+msgid "Files deleted"
+msgstr "Archivos borrados"
+
+msgid "A folder cannot be placed inside itself."
+msgstr "Una carpeta no se puede colocar dentro de sí misma."
+
+msgid "An item with that name already exists."
+msgstr "Ya existe un elemento con ese nombre."
+
+msgid "Could not change permissions."
+msgstr "No se pudieron cambiar los permisos."
+
+msgid "Could not copy file."
+msgstr "No se pudo copiar el archivo."
+
+msgid "Could not create archive."
+msgstr "No se pudo crear el archivo ZIP."
+
+msgid "Could not create file."
+msgstr "No se pudo crear el archivo."
+
+msgid "Could not create folder."
+msgstr "No se pudo crear la carpeta."
+
+msgid "Could not delete file."
+msgstr "No se pudo borrar el archivo."
+
+msgid "Could not delete folder."
+msgstr "No se pudo borrar la carpeta."
+
+msgid "Could not extract a file."
+msgstr "No se pudo descomprimir un archivo."
+
+msgid "Could not find a free name."
+msgstr "No se encontró un nombre libre."
+
+msgid "Could not rename."
+msgstr "No se pudo renombrar."
+
+msgid "Could not save file."
+msgstr "No se pudo guardar el archivo."
+
+msgid "Directory is not readable."
+msgstr "No se puede leer la carpeta."
+
+msgid "File is not readable."
+msgstr "No se puede leer el archivo."
+
+msgid "File is not writable."
+msgstr "El archivo no tiene permiso de escritura."
+
+msgid "Invalid name."
+msgstr "Nombre no válido."
+
+msgid "Invalid path."
+msgstr "Ruta no válida."
+
+msgid "Invalid permissions."
+msgstr "Permisos no válidos."
+
+msgid "Invalid upload."
+msgstr "Subida no válida."
+
+msgid "Item not found in trash."
+msgstr "No se encontró el elemento en la papelera."
+
+msgid "Not a directory."
+msgstr "No es una carpeta."
+
+msgid "Not a file."
+msgstr "No es un archivo."
+
+msgid "Not a folder."
+msgstr "No es una carpeta."
+
+msgid "Not a valid zip archive."
+msgstr "No es un archivo ZIP válido."
+
+msgid "Not found."
+msgstr "No encontrado."
+
+msgid "Only administrators can change permissions."
+msgstr "Solo los administradores pueden cambiar permisos."
+
+msgid "Only administrators can edit code files."
+msgstr "Solo los administradores pueden editar archivos de código."
+
+msgid "Symbolic links cannot be copied."
+msgstr "Los enlaces simbólicos no se pueden copiar."
+
+msgid "The PHP zip extension is not installed."
+msgstr "La extensión zip de PHP no está instalada."
+
+msgid "The archive contains symbolic links."
+msgstr "El archivo ZIP contiene enlaces simbólicos."
+
+msgid "The archive contains unsafe paths."
+msgstr "El archivo ZIP contiene rutas inseguras."
+
+msgid "The archive has too many files."
+msgstr "El archivo ZIP tiene demasiados archivos."
+
+msgid "The archive is too large to extract."
+msgstr "El archivo ZIP es demasiado grande para descomprimirlo."
+
+msgid "The archive looks like a zip bomb."
+msgstr "El archivo ZIP parece una bomba de descompresión."
+
+msgid "The file is larger than the upload limit."
+msgstr "El archivo supera el límite de subida."
+
+msgid "The root folder cannot be changed."
+msgstr "La carpeta raíz no se puede modificar."
+
+msgid "This file type is not allowed."
+msgstr "Este tipo de archivo no está permitido."
+
+msgid "Type at least two characters."
+msgstr "Escribe al menos dos caracteres."
+
+msgid "Upload chunk out of order."
+msgstr "Parte de la subida fuera de orden."
+
+msgid "Version not found."
+msgstr "Versión no encontrada."
+
+msgid "You do not have permission for this action."
+msgstr "No tienes permiso para esta acción."
+
+msgid "%d earlier version"
+msgid_plural "%d earlier versions"
+msgstr[0] "%d versión anterior"
+msgstr[1] "%d versiones anteriores"
+
+msgid "Uploading %d file"
+msgid_plural "Uploading %d files"
+msgstr[0] "Subiendo %d archivo"
+msgstr[1] "Subiendo %d archivos"
+
+msgid "%d item copied."
+msgid_plural "%d items copied."
+msgstr[0] "%d elemento copiado."
+msgstr[1] "%d elementos copiados."
+
+msgid "%d item cut."
+msgid_plural "%d items cut."
+msgstr[0] "%d elemento cortado."
+msgstr[1] "%d elementos cortados."
+
+msgid "%d item moved to the trash."
+msgid_plural "%d items moved to the trash."
+msgstr[0] "%d elemento movido a la papelera."
+msgstr[1] "%d elementos movidos a la papelera."
+
+msgid "%d search result"
+msgid_plural "%d search results"
+msgstr[0] "%d resultado"
+msgstr[1] "%d resultados"
+
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d elemento"
+msgstr[1] "%d elementos"
+
+msgid "%d selected"
+msgid_plural "%d selected"
+msgstr[0] "%d seleccionado"
+msgstr[1] "%d seleccionados"
+
+msgid "%d event"
+msgid_plural "%d events"
+msgstr[0] "%d evento"
+msgstr[1] "%d eventos"
