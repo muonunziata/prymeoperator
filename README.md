@@ -2,7 +2,7 @@
 
 Gestor de archivos profesional para WordPress, sin elFinder: explorador del servidor, editor de código con red de seguridad, papelera, versiones y registro de auditoría. Pensado para superar a File Manager Advanced en seguridad y en experiencia de uso.
 
-## Funciones (v0.2.0)
+## Funciones (v0.2.1)
 
 **Archivos**
 - Árbol de carpetas, vista de lista y de cuadrícula con miniaturas, migas de pan, ordenar por columnas.
@@ -32,6 +32,7 @@ Gestor de archivos profesional para WordPress, sin elFinder: explorador del serv
 - Registro de auditoría filtrable (usuario, acción, ruta, IP).
 - Acceso para otros roles: carpeta propia y permisos a elegir; nunca código, chmod ni tipos bloqueados.
 - Ajustes: carpeta raíz, tema claro/oscuro/automático, vista por defecto, archivos ocultos, límite de subida, tipos bloqueados, versiones, días de papelera, aviso por correo al borrar, borrado de datos al desinstalar.
+- Arregla el hueco que dejan las barras de carpetas flotantes en Entradas, Páginas y Medios (filtro `prymeoperator_fix_list_layout` para desactivarlo).
 - Interfaz en inglés y español (es_ES y variantes de Latinoamérica).
 
 ## Configuración
