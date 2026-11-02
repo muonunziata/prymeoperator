@@ -59,7 +59,7 @@ La papelera, las versiones y las subidas temporales viven en `wp-content/prymeop
 ## Desarrollo
 
 ```bash
-php tests/run.php          # pruebas unitarias (Jail, Operations, Crypto, Explorer, Tree)
+php tests/run.php          # pruebas unitarias (Jail, Operations, Crypto, Explorer, Tree, Papelera, Versiones, Vault)
 python3 bin/i18n/build.py  # regenerar traducciones desde bin/i18n/es.py
 ```
 
