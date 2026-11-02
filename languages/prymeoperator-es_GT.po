@@ -775,6 +775,84 @@ msgstr "Versión no encontrada."
 msgid "You do not have permission for this action."
 msgstr "No tienes permiso para esta acción."
 
+msgid "New"
+msgstr "Nueva"
+
+msgid "New subfolder"
+msgstr "Nueva subcarpeta"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Unassigned"
+msgstr "Sin carpeta"
+
+msgid "All media"
+msgstr "Todos los medios"
+
+msgid "Search folder…"
+msgstr "Buscar carpeta…"
+
+msgid "Show folders"
+msgstr "Mostrar carpetas"
+
+msgid "Hide folders"
+msgstr "Ocultar carpetas"
+
+msgid "Folder \"%s\" created."
+msgstr "Carpeta «%s» creada."
+
+msgid "Folder \"%s\" deleted."
+msgstr "Carpeta «%s» eliminada."
+
+msgid "Delete the folder \"%s\"?"
+msgstr "¿Eliminar la carpeta «%s»?"
+
+msgid "Nothing inside is deleted: its items become unassigned and its subfolders move up one level."
+msgstr "No se borra nada de su contenido: sus elementos quedan sin carpeta y sus subcarpetas suben un nivel."
+
+msgid "A folder cannot be moved inside itself."
+msgstr "Una carpeta no se puede mover dentro de sí misma."
+
+msgid "The folder needs a name."
+msgstr "La carpeta necesita un nombre."
+
+msgid "That folder no longer exists."
+msgstr "Esa carpeta ya no existe."
+
+msgid "Create a folder, then drag items onto it to organise them."
+msgstr "Crea una carpeta y arrastra elementos sobre ella para organizarlos."
+
+msgid "No folders yet. An editor or administrator can create them."
+msgstr "Aún no hay carpetas. Un editor o administrador puede crearlas."
+
+msgid "No folder matches your search."
+msgstr "Ninguna carpeta coincide con la búsqueda."
+
+msgid "Drag rows onto a folder. Tick several to move them together."
+msgstr "Arrastra filas sobre una carpeta. Marca varias para moverlas juntas."
+
+msgid "Drag thumbnails onto a folder. Use \"Bulk select\" to move several at once."
+msgstr "Arrastra miniaturas sobre una carpeta. Usa «Selección múltiple» para mover varias a la vez."
+
+msgid "Import folders from MediaFlow Pro"
+msgstr "Importar carpetas de MediaFlow Pro"
+
+msgid "Copy the folders from MediaFlow Pro into PrymeOperator? Your MediaFlow data is not changed."
+msgstr "¿Copiar las carpetas de MediaFlow Pro a PrymeOperator? Tus datos de MediaFlow no se modifican."
+
+msgid "Imported %1$d folders and %2$d items."
+msgstr "Importadas %1$d carpetas y %2$d elementos."
+
+msgid "Library folders"
+msgstr "Carpetas de la biblioteca"
+
+msgid "Adds a folder sidebar to these lists so you can organise items by dragging them. Folders are virtual: files and posts stay where they are."
+msgstr "Añade una barra de carpetas a estos listados para organizar los elementos arrastrándolos. Las carpetas son virtuales: los archivos y las entradas no se mueven de sitio."
+
+msgid "Show folders in"
+msgstr "Mostrar carpetas en"
+
 msgid "%d earlier version"
 msgid_plural "%d earlier versions"
 msgstr[0] "%d versión anterior"
@@ -819,3 +897,13 @@ msgid "%d event"
 msgid_plural "%d events"
 msgstr[0] "%d evento"
 msgstr[1] "%d eventos"
+
+msgid "%1$d item moved to \"%2$s\"."
+msgid_plural "%1$d items moved to \"%2$s\"."
+msgstr[0] "%1$d elemento movido a «%2$s»."
+msgstr[1] "%1$d elementos movidos a «%2$s»."
+
+msgid "%d item could not be moved: you cannot edit it."
+msgid_plural "%d items could not be moved: you cannot edit them."
+msgstr[0] "%d elemento no se pudo mover: no tienes permiso para editarlo."
+msgstr[1] "%d elementos no se pudieron mover: no tienes permiso para editarlos."

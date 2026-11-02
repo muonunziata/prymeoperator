@@ -121,6 +121,7 @@ final class AdminController {
 			'permissions'  => Settings::PERMISSIONS,
 			'default_root' => ABSPATH,
 			'root_locked'  => defined( 'PRYMEOPERATOR_ROOT' ),
+			'post_types'   => \PrymeOperator\Library\Integration::available_scopes(),
 		];
 	}
 

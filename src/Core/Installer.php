@@ -3,7 +3,7 @@ namespace PrymeOperator\Core;
 
 final class Installer {
 
-	public const DB_VERSION = '1';
+	public const DB_VERSION = '2';
 	private const OPTION    = 'prymeoperator_db_version';
 
 	public static function activate(): void {
@@ -44,6 +44,27 @@ final class Installer {
 			KEY created_at (created_at)
 		) {$charset};" );
 
+		// Library folders (Media Library, Pages, Posts…). An item lives in at most one folder.
+		$folders = $wpdb->prefix . 'prymeoperator_folders';
+		dbDelta( "CREATE TABLE {$folders} (
+			id BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+			parent_id BIGINT UNSIGNED NOT NULL DEFAULT 0,
+			scope VARCHAR(20) NOT NULL,
+			name VARCHAR(190) NOT NULL,
+			created_by BIGINT UNSIGNED NOT NULL DEFAULT 0,
+			created_at DATETIME NOT NULL,
+			PRIMARY KEY  (id),
+			KEY scope_parent (scope,parent_id)
+		) {$charset};" );
+
+		$items = $wpdb->prefix . 'prymeoperator_folder_items';
+		dbDelta( "CREATE TABLE {$items} (
+			object_id BIGINT UNSIGNED NOT NULL,
+			folder_id BIGINT UNSIGNED NOT NULL,
+			PRIMARY KEY  (object_id),
+			KEY folder_id (folder_id)
+		) {$charset};" );
+
 		update_option( self::OPTION, self::DB_VERSION, false );
 	}
 
@@ -61,7 +82,10 @@ final class Installer {
 		if ( is_dir( $vault->base() ) ) {
 			\PrymeOperator\Server\Fs::remove( $vault->base() );
 		}
-		$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}prymeoperator_audit" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		foreach ( [ 'prymeoperator_audit', 'prymeoperator_folders', 'prymeoperator_folder_items' ] as $table ) {
+			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+		}
+		delete_option( 'prymeoperator_mediaflow_map' );
 		delete_option( self::OPTION );
 		delete_option( 'prymeoperator_settings' );
 	}

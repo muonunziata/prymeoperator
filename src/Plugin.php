@@ -6,7 +6,9 @@ use PrymeOperator\Core\Installer;
 use PrymeOperator\Core\Services;
 use PrymeOperator\Core\Settings;
 use PrymeOperator\Rest\AdminController;
+use PrymeOperator\Library\Integration;
 use PrymeOperator\Rest\AuditController;
+use PrymeOperator\Rest\LibraryController;
 use PrymeOperator\Rest\ServerController;
 
 final class Plugin {
@@ -24,9 +26,12 @@ final class Plugin {
 			( new ServerController() )->register_routes();
 			( new AdminController() )->register_routes();
 			( new AuditController() )->register_routes();
+			( new LibraryController() )->register_routes();
 		} );
 
 		add_action( self::CRON_HOOK, [ self::class, 'daily' ] );
+
+		( new Integration() )->hooks();
 
 		if ( is_admin() ) {
 			( new Page() )->hooks();

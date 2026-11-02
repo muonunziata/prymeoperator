@@ -35,6 +35,7 @@ final class Settings {
 			'theme'                    => 'auto',
 			'default_view'             => 'list',
 			'delete_data_on_uninstall' => false,
+			'library_post_types'       => [ 'attachment', 'page', 'post' ],
 		];
 	}
 
@@ -75,6 +76,9 @@ final class Settings {
 				case 'role_access':
 					$roles         = array_keys( wp_roles()->roles );
 					$clean[ $key ] = array_values( array_intersect( array_map( 'strval', (array) $value ), $roles ) );
+					break;
+				case 'library_post_types':
+					$clean[ $key ] = array_values( array_unique( array_filter( array_map( 'sanitize_key', (array) $value ), 'post_type_exists' ) ) );
 					break;
 				case 'role_permissions':
 					$clean[ $key ] = array_values( array_intersect( array_map( 'strval', (array) $value ), self::PERMISSIONS ) );

@@ -1062,6 +1062,10 @@
 				h( SelectControl, Object.assign( { label: __( 'Default view', 'prymeoperator' ), value: form.default_view, onChange: set( 'default_view' ), options: [ { value: 'list', label: __( 'List', 'prymeoperator' ) }, { value: 'grid', label: __( 'Grid', 'prymeoperator' ) } ] }, nm ) ),
 				h( ToggleControl, Object.assign( { label: __( 'Show hidden files (starting with a dot)', 'prymeoperator' ), checked: form.show_hidden, onChange: set( 'show_hidden' ) }, nm ) )
 			),
+			section( __( 'Library folders', 'prymeoperator' ), __( 'Adds a folder sidebar to these lists so you can organise items by dragging them. Folders are virtual: files and posts stay where they are.', 'prymeoperator' ),
+				h( 'fieldset', null, h( 'legend', null, __( 'Show folders in', 'prymeoperator' ) ),
+					( payload.post_types || [] ).map( ( t ) => h( CheckboxControl, Object.assign( { key: t.value, label: t.label, checked: form.library_post_types.includes( t.value ), onChange: toggleIn( 'library_post_types', t.value ) }, nm ) ) ) )
+			),
 			section( __( 'Access for other roles', 'prymeoperator' ), __( 'Administrators always have full access. Roles you enable here only see their folder and can only do what you allow. They can never upload blocked file types, edit code or change permissions.', 'prymeoperator' ),
 				h( 'fieldset', null, h( 'legend', null, __( 'Roles with access', 'prymeoperator' ) ),
 					payload.roles.map( ( r ) => h( CheckboxControl, Object.assign( { key: r.value, label: r.label, checked: form.role_access.includes( r.value ), onChange: toggleIn( 'role_access', r.value ) }, nm ) ) ) ),

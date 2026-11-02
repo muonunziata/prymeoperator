@@ -2,7 +2,7 @@
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 0.2.2
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,15 @@ Secure file operator for WordPress: server file manager, media library folders a
 PrymeOperator brings the server file manager and the media library organiser into one plugin, without elFinder. Every path is confined to an allowed root folder, every action is recorded in an audit log, and destructive operations will be reversible.
 
 == Changelog ==
+
+= 0.3.0 =
+* Library folders: a folder sidebar on Media (grid and list), Pages, Posts and any other post type you enable in Settings.
+* Drag rows or thumbnails onto a folder to file them; tick several (or use Bulk select) to move them together. Drag folders to nest them.
+* Subfolders, inline rename, folder search, counts, "Unassigned" view and a collapsible sidebar that follows the page.
+* Files uploaded while a folder is open in the Media Library go into that folder.
+* Deleting a folder never deletes content: its items become unassigned and its subfolders move up one level.
+* Editors and administrators organise folders; authors can file their own items into them. Every change is in the activity log.
+* One-click import of folders from MediaFlow Pro.
 
 = 0.2.2 =
 * The folders sidebar on Posts, Pages and Media now follows the page as you scroll, with its own scroll when it is taller than the window.
