@@ -4,8 +4,9 @@
  *
  * WordPress gives `.tablenav` `clear: both`, so the bulk-actions row and the
  * table drop below any left float and leave a gap as tall as the sidebar.
- * Once such a sidebar shows up we take it out of the float flow: it is pinned
- * to the left of #wpbody-content and the content gets matching padding.
+ * Once such a sidebar shows up we take it out of the float flow: it moves into
+ * a full-height column on the left of #wpbody-content, sticks below the admin
+ * bar while the page scrolls, and the content gets matching padding.
  */
 ( function () {
 	'use strict';
@@ -45,9 +46,11 @@
 	}
 
 	function apply( side ) {
-		if ( side.parentNode !== body ) {
-			body.insertBefore( side, body.firstChild );
-		}
+		// The column spans the whole content height so the sidebar can stick inside it.
+		var col = document.createElement( 'div' );
+		col.className = 'po-lf-col';
+		body.insertBefore( col, body.firstChild );
+		col.appendChild( side );
 		body.classList.add( 'po-lf-host' );
 		side.classList.add( 'po-lf-side' );
 
@@ -66,8 +69,9 @@
 	css.id = 'prymeoperator-list-layout';
 	css.textContent =
 		'#wpbody-content.po-lf-host{position:relative;box-sizing:border-box;padding-left:calc(var(--po-lf-w) + 20px);min-height:calc(var(--po-lf-h) + 20px)}' +
-		'#wpbody-content.po-lf-host>.po-lf-side{position:absolute!important;left:0;top:10px;float:none!important;margin:0!important}' +
-		'@media (max-width:782px){#wpbody-content.po-lf-host{padding-left:0;min-height:0}#wpbody-content.po-lf-host>.po-lf-side{position:static!important;width:auto!important;margin:10px 10px 0 0!important}}';
+		'#wpbody-content.po-lf-host>.po-lf-col{position:absolute;left:0;top:10px;bottom:0}' +
+		'.po-lf-col>.po-lf-side{position:sticky!important;top:calc(var(--wp-admin--admin-bar--height,32px) + 10px);float:none!important;margin:0!important;max-height:calc(100vh - var(--wp-admin--admin-bar--height,32px) - 20px);overflow-y:auto;box-sizing:border-box}' +
+		'@media (max-width:782px){#wpbody-content.po-lf-host{padding-left:0;min-height:0}#wpbody-content.po-lf-host>.po-lf-col{position:static}.po-lf-col>.po-lf-side{position:static!important;max-height:none;width:auto!important;margin:10px 10px 0 0!important}}';
 	document.head.appendChild( css );
 
 	function tryApply() {
