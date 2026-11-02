@@ -37,6 +37,10 @@ final class Page {
 	}
 
 	public function assets( string $hook ): void {
+		if ( in_array( $hook, [ 'edit.php', 'upload.php' ], true ) && apply_filters( 'prymeoperator_fix_list_layout', true ) ) {
+			// Repairs the gap that left-floated folder sidebars leave above list tables.
+			wp_enqueue_script( 'prymeoperator-list-layout', PRYMEOPERATOR_URL . 'assets/list-layout.js', [], PRYMEOPERATOR_VERSION, true );
+		}
 		if ( 'toplevel_page_' . self::SLUG !== $hook ) {
 			return;
 		}
