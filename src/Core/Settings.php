@@ -36,6 +36,9 @@ final class Settings {
 			'default_view'             => 'list',
 			'delete_data_on_uninstall' => false,
 			'library_post_types'       => [ 'attachment', 'page', 'post' ],
+			'backup_schedule'          => 'off',
+			'backup_files'             => 'content',
+			'backup_keep'              => 5,
 		];
 	}
 
@@ -99,6 +102,15 @@ final class Settings {
 				case 'default_view':
 					$clean[ $key ] = in_array( $value, [ 'list', 'grid' ], true ) ? $value : 'list';
 					break;
+				case 'backup_schedule':
+					$clean[ $key ] = in_array( $value, [ 'off', 'daily', 'weekly' ], true ) ? $value : 'off';
+					break;
+				case 'backup_files':
+					$clean[ $key ] = in_array( $value, [ 'none', 'content', 'all' ], true ) ? $value : 'content';
+					break;
+				case 'backup_keep':
+					$clean[ $key ] = max( 1, min( 100, (int) $value ) );
+					break;
 				case 'max_upload_mb':
 				case 'versions_keep':
 				case 'trash_days':
@@ -110,6 +122,7 @@ final class Settings {
 		}
 
 		update_option( self::OPTION, $clean, false );
+		do_action( 'prymeoperator_settings_saved', $clean );
 		return $clean;
 	}
 

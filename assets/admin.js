@@ -14,6 +14,7 @@
 	const api = {
 		get: ( path, params ) => apiFetch( { path: addQueryArgs( '/prymeoperator/v1/' + path, params || {} ) } ),
 		post: ( path, data ) => apiFetch( { path: '/prymeoperator/v1/' + path, method: 'POST', data } ),
+		del: ( path ) => apiFetch( { path: '/prymeoperator/v1/' + path, method: 'DELETE' } ),
 		rawUrl: ( path, download ) => addQueryArgs( CFG.rest + 'server/raw', { path, download: download ? 1 : 0, _wpnonce: CFG.nonce } ),
 	};
 
@@ -997,6 +998,141 @@
 		);
 	}
 
+	// ── Backups ────────────────────────────────────────────────────────────
+
+	function BackupsView() {
+		const [ data, setData ] = useState( null );
+		const [ form, setForm ] = useState( { files: 'content', database: true, label: '' } );
+		const [ job, setJob ] = useState( null );
+		const [ confirm, setConfirm ] = useState( null );
+		const busy = !! job && job.status === 'running';
+		const load = () => api.get( 'backups' ).then( ( d ) => { setData( d ); return d; }, ( e ) => toast( errMsg( e ), 'error' ) );
+
+		// Restore steps carry their own token and no nonce: the restored data
+		// may log this browser out half way, and the job must still finish.
+		const step = ( id, token ) => ( token
+			? window.fetch( CFG.rest + 'backups/step', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify( { id, token } ) } )
+				.then( ( res ) => res.json().then( ( body ) => ( res.ok ? body : Promise.reject( body ) ) ) )
+			: api.post( 'backups/step', { id } ) );
+
+		const drive = ( first, token ) => {
+			setJob( first );
+			const loop = ( current ) => {
+				if ( current.status !== 'running' ) {
+					setJob( current );
+					if ( current.status === 'done' ) {
+						if ( current.kind === 'restore' ) {
+							toast( __( 'Database restored. The page will reload.', 'prymeoperator' ) );
+							setTimeout( () => window.location.reload(), 1500 );
+						} else {
+							toast( __( 'Backup created.', 'prymeoperator' ) );
+						}
+					} else {
+						toast( current.error || __( 'Something went wrong.', 'prymeoperator' ), 'error' );
+					}
+					load();
+					return;
+				}
+				step( current.id, token ).then( ( next ) => { setJob( next ); loop( next ); }, ( e ) => {
+					setJob( Object.assign( {}, current, { status: 'failed', error: errMsg( e ) } ) );
+					toast( errMsg( e ), 'error' );
+				} );
+			};
+			loop( first );
+		};
+
+		useEffect( () => {
+			load().then( ( d ) => {
+				// Pick up a job that was running when the page was left.
+				if ( d && d.running && d.running.length ) drive( d.running[ 0 ] );
+			} );
+		}, [] );
+
+		if ( ! data ) return h( 'div', { className: 'po-center' }, h( Spinner ) );
+
+		const create = () => api.post( 'backups', form ).then( ( first ) => drive( first ), ( e ) => toast( errMsg( e ), 'error' ) );
+		const cancel = () => api.post( 'backups/cancel', { id: job.id } ).then( () => { setJob( null ); toast( __( 'Backup cancelled.', 'prymeoperator' ) ); load(); }, ( e ) => toast( errMsg( e ), 'error' ) );
+		const contents = ( b ) => [ b.database && __( 'Database', 'prymeoperator' ), b.files === 'content' && __( 'wp-content folder', 'prymeoperator' ), b.files === 'all' && __( 'All files', 'prymeoperator' ) ].filter( Boolean ).join( ' + ' );
+		const phase = ! job ? '' : {
+			database: __( 'Copying the database…', 'prymeoperator' ),
+			scan: __( 'Listing files…', 'prymeoperator' ),
+			files: job.files && job.files.total ? sprintf( __( 'Adding files… %1$d of %2$d', 'prymeoperator' ), job.files.done, job.files.total ) : __( 'Adding files…', 'prymeoperator' ),
+			finish: __( 'Finishing…', 'prymeoperator' ),
+			safety: __( 'Taking a safety copy of the current database…', 'prymeoperator' ),
+			done: __( 'Done.', 'prymeoperator' ),
+		}[ job.kind === 'restore' && job.phase === 'database' ? 'restoring' : job.phase ] || ( job.kind === 'restore' ? __( 'Restoring the database…', 'prymeoperator' ) : '' );
+		const nm = { __nextHasNoMarginBottom: true };
+
+		return h( 'div', { className: 'po-backups' },
+			h( 'div', { className: 'po-cards' },
+				h( 'div', { className: 'po-card' },
+					h( 'h3', null, __( 'New backup', 'prymeoperator' ) ),
+					! data.zip ? h( 'p', null, __( 'The PHP zip extension is not installed.', 'prymeoperator' ) ) : h( Fragment, null,
+						h( ToggleControl, Object.assign( { label: __( 'Database', 'prymeoperator' ), help: __( 'Posts, pages, settings, users… every table of this site.', 'prymeoperator' ), checked: form.database, disabled: busy, onChange: ( v ) => setForm( Object.assign( {}, form, { database: v } ) ) }, nm ) ),
+						h( SelectControl, Object.assign( { label: __( 'Files', 'prymeoperator' ), value: form.files, disabled: busy, onChange: ( v ) => setForm( Object.assign( {}, form, { files: v } ) ), options: [
+							{ value: 'content', label: __( 'wp-content folder (uploads, themes, plugins)', 'prymeoperator' ) },
+							{ value: 'all', label: __( 'All files of the WordPress folder', 'prymeoperator' ) },
+							{ value: 'none', label: __( 'No files', 'prymeoperator' ) },
+						] }, nm ) ),
+						h( TextControl, Object.assign( { label: __( 'Note (optional)', 'prymeoperator' ), placeholder: __( 'e.g. Before updating the theme', 'prymeoperator' ), value: form.label, disabled: busy, onChange: ( v ) => setForm( Object.assign( {}, form, { label: v } ) ) }, nm ) ),
+						h( 'div', { className: 'po-backups__go' }, h( Button, { variant: 'primary', disabled: busy || ( ! form.database && form.files === 'none' ), onClick: create }, __( 'Create backup', 'prymeoperator' ) ) )
+					)
+				),
+				h( 'div', { className: 'po-card' },
+					h( 'h3', null, job ? ( job.kind === 'restore' ? __( 'Restore', 'prymeoperator' ) : __( 'Progress', 'prymeoperator' ) ) : __( 'Automatic backups', 'prymeoperator' ) ),
+					job ? h( Fragment, null,
+						h( 'p', { className: 'po-backups__phase' }, job.status === 'failed' ? h( 'span', { className: 'po-backups__error' }, job.error ) : phase ),
+						h( 'span', { className: 'po-progress po-progress--big' }, h( 'span', { style: { width: job.percent + '%' } } ) ),
+						h( 'p', { className: 'po-muted' }, job.percent + '%' ),
+						job.kind === 'restore' && job.status === 'running' && h( 'p', { className: 'po-muted' }, __( 'Keep this page open until the restore ends.', 'prymeoperator' ) ),
+						busy && job.kind !== 'restore' && h( Button, { variant: 'tertiary', onClick: cancel }, __( 'Cancel', 'prymeoperator' ) ),
+						! busy && h( Button, { variant: 'secondary', onClick: () => setJob( null ) }, __( 'Close', 'prymeoperator' ) )
+					) : h( Fragment, null,
+						h( 'p', null, data.next ? sprintf( __( 'Next automatic backup: %s', 'prymeoperator' ), formatDate( data.next ) ) : __( 'Automatic backups are off.', 'prymeoperator' ) ),
+						h( 'p', { className: 'po-muted' }, __( 'Turn them on and choose how many to keep in Settings.', 'prymeoperator' ) )
+					)
+				)
+			),
+			h( 'p', { className: 'po-muted po-backups__where' }, __( 'Backups are stored in a private folder that cannot be opened from the web. Download the important ones and keep a copy somewhere else too.', 'prymeoperator' ) ),
+			data.backups.length === 0 ? h( 'div', { className: 'po-empty' }, h( 'span', { className: 'dashicons dashicons-backup' } ), h( 'p', null, __( 'No backups yet.', 'prymeoperator' ) ) )
+				: h( 'table', { className: 'po-list' },
+					h( 'thead', null, h( 'tr', null,
+						h( 'th', null, __( 'Date', 'prymeoperator' ) ), h( 'th', null, __( 'Contents', 'prymeoperator' ) ), h( 'th', null, __( 'Size', 'prymeoperator' ) ),
+						h( 'th', null, __( 'Created by', 'prymeoperator' ) ), h( 'th' )
+					) ),
+					h( 'tbody', null, data.backups.map( ( b ) => h( 'tr', { key: b.id },
+						h( 'td', { className: 'po-col-name' }, h( 'span', { className: 'dashicons dashicons-archive' } ), h( 'span', { className: 'po-name' }, formatDate( b.created_at ), b.label && h( 'small', { className: 'po-backups__label' }, b.label ) ) ),
+						h( 'td', null, contents( b ) ),
+						h( 'td', null, formatSize( b.size ) ),
+						h( 'td', null, b.automatic ? __( 'Automatic', 'prymeoperator' ) : b.user ),
+						h( 'td', { className: 'po-actions' },
+							h( Button, { variant: 'secondary', size: 'compact', href: addQueryArgs( CFG.rest + 'backups/' + b.id + '/download', { _wpnonce: CFG.nonce } ) }, __( 'Download', 'prymeoperator' ) ),
+							b.database && h( Button, { variant: 'tertiary', size: 'compact', disabled: busy, onClick: () => setConfirm( { type: 'restore', b } ) }, __( 'Restore database', 'prymeoperator' ) ),
+							h( Button, { variant: 'tertiary', size: 'compact', isDestructive: true, disabled: busy, onClick: () => setConfirm( { type: 'delete', b } ) }, __( 'Delete', 'prymeoperator' ) )
+						)
+					) ) )
+				),
+			confirm && h( ConfirmDialog, {
+				title: confirm.type === 'restore' ? __( 'Restore database', 'prymeoperator' ) : __( 'Delete backup', 'prymeoperator' ),
+				message: confirm.type === 'restore'
+					? sprintf( __( 'The database will go back to how it was on %s. Everything written since then (posts, orders, comments, settings) will be replaced. A safety copy of the current database is made first, so you can undo this.', 'prymeoperator' ), formatDate( confirm.b.created_at ) )
+					: sprintf( __( 'The backup from %s will be deleted permanently. This cannot be undone.', 'prymeoperator' ), formatDate( confirm.b.created_at ) ),
+				confirm: confirm.type === 'restore' ? __( 'Restore database', 'prymeoperator' ) : __( 'Delete permanently', 'prymeoperator' ),
+				destructive: true,
+				onClose: () => setConfirm( null ),
+				onConfirm: () => {
+					const c = confirm;
+					setConfirm( null );
+					if ( c.type === 'restore' ) {
+						api.post( 'backups/' + c.b.id + '/restore' ).then( ( first ) => drive( first, first.token ), ( e ) => toast( errMsg( e ), 'error' ) );
+					} else {
+						api.del( 'backups/' + c.b.id ).then( () => { toast( __( 'Backup deleted.', 'prymeoperator' ) ); load(); }, ( e ) => toast( errMsg( e ), 'error' ) );
+					}
+				},
+			} )
+		);
+	}
+
 	// ── Activity ───────────────────────────────────────────────────────────
 
 	function Activity() {
@@ -1084,12 +1220,17 @@
 				h( TextControl, Object.assign( { type: 'number', min: 0, label: __( 'Versions kept per file', 'prymeoperator' ), value: String( form.versions_keep ), onChange: ( v ) => set( 'versions_keep' )( parseInt( v || '0', 10 ) ) }, nm ) ),
 				h( TextControl, Object.assign( { type: 'number', min: 0, label: __( 'Days to keep items in the trash', 'prymeoperator' ), help: __( '0 keeps them until you empty the trash.', 'prymeoperator' ), value: String( form.trash_days ), onChange: ( v ) => set( 'trash_days' )( parseInt( v || '0', 10 ) ) }, nm ) )
 			),
+			section( __( 'Automatic backups', 'prymeoperator' ), __( 'Backups run at night, around 3:00, and always include the database.', 'prymeoperator' ),
+				h( SelectControl, Object.assign( { label: __( 'Frequency', 'prymeoperator' ), value: form.backup_schedule, onChange: set( 'backup_schedule' ), options: [ { value: 'off', label: __( 'Off', 'prymeoperator' ) }, { value: 'daily', label: __( 'Every day', 'prymeoperator' ) }, { value: 'weekly', label: __( 'Every week', 'prymeoperator' ) } ] }, nm ) ),
+				form.backup_schedule !== 'off' && h( SelectControl, Object.assign( { label: __( 'Files', 'prymeoperator' ), value: form.backup_files, onChange: set( 'backup_files' ), options: [ { value: 'content', label: __( 'wp-content folder (uploads, themes, plugins)', 'prymeoperator' ) }, { value: 'all', label: __( 'All files of the WordPress folder', 'prymeoperator' ) }, { value: 'none', label: __( 'No files', 'prymeoperator' ) } ] }, nm ) ),
+				form.backup_schedule !== 'off' && h( TextControl, Object.assign( { type: 'number', min: 1, max: 100, label: __( 'Automatic backups to keep', 'prymeoperator' ), help: __( 'Older automatic backups are deleted. Backups you make by hand are never deleted automatically.', 'prymeoperator' ), value: String( form.backup_keep ), onChange: ( v ) => set( 'backup_keep' )( parseInt( v || '1', 10 ) ) }, nm ) )
+			),
 			section( __( 'Notifications', 'prymeoperator' ), null,
 				h( ToggleControl, Object.assign( { label: __( 'E-mail me when files are deleted', 'prymeoperator' ), checked: form.notify_on_delete, onChange: set( 'notify_on_delete' ) }, nm ) ),
 				form.notify_on_delete && h( TextControl, Object.assign( { type: 'email', label: __( 'Send to', 'prymeoperator' ), help: __( 'Leave empty to use the site administrator e-mail.', 'prymeoperator' ), value: form.notify_email, onChange: set( 'notify_email' ) }, nm ) )
 			),
 			section( __( 'Uninstall', 'prymeoperator' ), null,
-				h( ToggleControl, Object.assign( { label: __( 'Delete all PrymeOperator data when the plugin is deleted', 'prymeoperator' ), help: __( 'Activity log, trash, versions and settings. Your own files are never touched.', 'prymeoperator' ), checked: form.delete_data_on_uninstall, onChange: set( 'delete_data_on_uninstall' ) }, nm ) )
+				h( ToggleControl, Object.assign( { label: __( 'Delete all PrymeOperator data when the plugin is deleted', 'prymeoperator' ), help: __( 'Activity log, trash, versions, backups and settings. Your own files are never touched.', 'prymeoperator' ), checked: form.delete_data_on_uninstall, onChange: set( 'delete_data_on_uninstall' ) }, nm ) )
 			),
 			h( 'div', { className: 'po-settings__save' }, h( Button, { variant: 'primary', isBusy: saving, disabled: saving, onClick: save }, __( 'Save settings', 'prymeoperator' ) ) )
 		);
@@ -1102,6 +1243,7 @@
 			{ name: 'files', title: __( 'Files', 'prymeoperator' ), icon: 'portfolio' },
 			{ name: 'dashboard', title: __( 'Dashboard', 'prymeoperator' ), icon: 'chart-area' },
 			{ name: 'trash', title: __( 'Trash', 'prymeoperator' ), icon: 'trash' },
+			CFG.isAdmin && { name: 'backups', title: __( 'Backups', 'prymeoperator' ), icon: 'database' },
 			CFG.isAdmin && { name: 'activity', title: __( 'Activity', 'prymeoperator' ), icon: 'backup' },
 			CFG.isAdmin && { name: 'settings', title: __( 'Settings', 'prymeoperator' ), icon: 'admin-generic' },
 		].filter( Boolean );
@@ -1114,6 +1256,7 @@
 		if ( tab === 'files' ) body = h( Browser );
 		if ( tab === 'dashboard' ) body = h( Dashboard, { goTo } );
 		if ( tab === 'trash' ) body = h( TrashView );
+		if ( tab === 'backups' ) body = h( BackupsView );
 		if ( tab === 'activity' ) body = h( Activity );
 		if ( tab === 'settings' ) body = h( SettingsView, { onTheme: setTheme } );
 

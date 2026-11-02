@@ -853,6 +853,183 @@ msgstr "Añade una barra de carpetas a estos listados para organizar los element
 msgid "Show folders in"
 msgstr "Mostrar carpetas en"
 
+msgid "Activity log, trash, versions, backups and settings. Your own files are never touched."
+msgstr "Registro de actividad, papelera, versiones, copias de seguridad y ajustes. Tus propios archivos nunca se tocan."
+
+msgid "Adding files…"
+msgstr "Añadiendo archivos…"
+
+msgid "Adding files… %1$d of %2$d"
+msgstr "Añadiendo archivos… %1$d de %2$d"
+
+msgid "All files"
+msgstr "Todos los archivos"
+
+msgid "All files of the WordPress folder"
+msgstr "Todos los archivos de la carpeta de WordPress"
+
+msgid "Automatic"
+msgstr "Automática"
+
+msgid "Automatic backups"
+msgstr "Copias automáticas"
+
+msgid "Automatic backups are off."
+msgstr "Las copias automáticas están desactivadas."
+
+msgid "Automatic backups to keep"
+msgstr "Copias automáticas que se conservan"
+
+msgid "Backup cancelled."
+msgstr "Copia cancelada."
+
+msgid "Backup created."
+msgstr "Copia de seguridad creada."
+
+msgid "Backup deleted."
+msgstr "Copia eliminada."
+
+msgid "Backups"
+msgstr "Copias de seguridad"
+
+msgid "Backups are stored in a private folder that cannot be opened from the web. Download the important ones and keep a copy somewhere else too."
+msgstr "Las copias se guardan en una carpeta privada a la que no se puede acceder desde la web. Descarga las importantes y guarda también una copia en otro sitio."
+
+msgid "Backups run at night, around 3:00, and always include the database."
+msgstr "Las copias se hacen de noche, hacia las 3:00, y siempre incluyen la base de datos."
+
+msgid "Contents"
+msgstr "Contenido"
+
+msgid "Copying the database…"
+msgstr "Copiando la base de datos…"
+
+msgid "Create backup"
+msgstr "Crear copia"
+
+msgid "Created by"
+msgstr "Creada por"
+
+msgid "Database"
+msgstr "Base de datos"
+
+msgid "Database restored. The page will reload."
+msgstr "Base de datos restaurada. La página se recargará."
+
+msgid "Date"
+msgstr "Fecha"
+
+msgid "Delete backup"
+msgstr "Eliminar copia"
+
+msgid "Done."
+msgstr "Listo."
+
+msgid "Every day"
+msgstr "Cada día"
+
+msgid "Every week"
+msgstr "Cada semana"
+
+msgid "Finishing…"
+msgstr "Terminando…"
+
+msgid "Frequency"
+msgstr "Frecuencia"
+
+msgid "Keep this page open until the restore ends."
+msgstr "Mantén esta página abierta hasta que termine la restauración."
+
+msgid "Listing files…"
+msgstr "Buscando archivos…"
+
+msgid "New backup"
+msgstr "Nueva copia"
+
+msgid "Next automatic backup: %s"
+msgstr "Próxima copia automática: %s"
+
+msgid "No backups yet."
+msgstr "Todavía no hay copias de seguridad."
+
+msgid "No files"
+msgstr "Sin archivos"
+
+msgid "Note (optional)"
+msgstr "Nota (opcional)"
+
+msgid "Off"
+msgstr "Desactivadas"
+
+msgid "Older automatic backups are deleted. Backups you make by hand are never deleted automatically."
+msgstr "Las copias automáticas más antiguas se eliminan. Las que haces a mano nunca se borran solas."
+
+msgid "Posts, pages, settings, users… every table of this site."
+msgstr "Entradas, páginas, ajustes, usuarios… todas las tablas de este sitio."
+
+msgid "Progress"
+msgstr "Progreso"
+
+msgid "Restore database"
+msgstr "Restaurar base de datos"
+
+msgid "Restoring the database…"
+msgstr "Restaurando la base de datos…"
+
+msgid "Taking a safety copy of the current database…"
+msgstr "Haciendo una copia de seguridad de la base de datos actual…"
+
+msgid "The backup from %s will be deleted permanently. This cannot be undone."
+msgstr "La copia del %s se eliminará para siempre. No se puede deshacer."
+
+msgid "The database will go back to how it was on %s. Everything written since then (posts, orders, comments, settings) will be replaced. A safety copy of the current database is made first, so you can undo this."
+msgstr "La base de datos volverá a como estaba el %s. Todo lo escrito desde entonces (entradas, pedidos, comentarios, ajustes) se sustituirá. Antes se hace una copia de la base de datos actual, así que podrás deshacerlo."
+
+msgid "Turn them on and choose how many to keep in Settings."
+msgstr "Actívalas y elige cuántas conservar en Ajustes."
+
+msgid "e.g. Before updating the theme"
+msgstr "p. ej. Antes de actualizar el tema"
+
+msgid "wp-content folder"
+msgstr "Carpeta wp-content"
+
+msgid "wp-content folder (uploads, themes, plugins)"
+msgstr "Carpeta wp-content (medios, temas, plugins)"
+
+msgid "Safety copy before restoring the backup from %s"
+msgstr "Copia de seguridad antes de restaurar la del %s"
+
+msgid "Choose what to back up."
+msgstr "Elige qué quieres copiar."
+
+msgid "Backup not found."
+msgstr "Copia de seguridad no encontrada."
+
+msgid "This backup has no database."
+msgstr "Esta copia no incluye la base de datos."
+
+msgid "The safety backup failed, so nothing was restored."
+msgstr "Falló la copia de seguridad previa, así que no se restauró nada."
+
+msgid "Could not read the database from the backup."
+msgstr "No se pudo leer la base de datos de la copia."
+
+msgid "The database could not be restored: %s"
+msgstr "No se pudo restaurar la base de datos: %s"
+
+msgid "Could not write the backup file."
+msgstr "No se pudo escribir el archivo de la copia."
+
+msgid "Could not write the backup file list."
+msgstr "No se pudo escribir la lista de archivos de la copia."
+
+msgid "The folder to back up must be inside the base folder."
+msgstr "La carpeta a copiar debe estar dentro de la carpeta base."
+
+msgid "Restore stopped."
+msgstr "Restauración detenida."
+
 msgid "%d earlier version"
 msgid_plural "%d earlier versions"
 msgstr[0] "%d versión anterior"

@@ -11,10 +11,12 @@ final class Installer {
 		if ( ! wp_next_scheduled( \PrymeOperator\Plugin::CRON_HOOK ) ) {
 			wp_schedule_event( time() + HOUR_IN_SECONDS, 'daily', \PrymeOperator\Plugin::CRON_HOOK );
 		}
+		\PrymeOperator\Plugin::schedule_backups();
 	}
 
 	public static function deactivate(): void {
 		wp_clear_scheduled_hook( \PrymeOperator\Plugin::CRON_HOOK );
+		wp_clear_scheduled_hook( \PrymeOperator\Plugin::BACKUP_HOOK );
 	}
 
 	public static function maybe_upgrade(): void {
@@ -75,6 +77,7 @@ final class Installer {
 	public static function uninstall(): void {
 		global $wpdb;
 		wp_clear_scheduled_hook( \PrymeOperator\Plugin::CRON_HOOK );
+		wp_clear_scheduled_hook( \PrymeOperator\Plugin::BACKUP_HOOK );
 		if ( ! Settings::get( 'delete_data_on_uninstall' ) ) {
 			return;
 		}
