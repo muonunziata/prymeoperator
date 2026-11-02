@@ -16,7 +16,7 @@ sys.path.insert(0, HERE)
 from es import PLURAL, SINGULAR  # noqa: E402
 
 DOMAIN = 'prymeoperator'
-SCRIPTS = ['assets/admin.js', 'assets/library.js']
+SCRIPTS = ['assets/admin.js', 'assets/library.js', 'assets/folder-block.js']
 LOCALES = ['es_ES', 'es_MX', 'es_AR', 'es_CO', 'es_CL', 'es_PE', 'es_VE', 'es_UY', 'es_EC', 'es_GT', 'es_CR', 'es_DO', 'es_PR']
 PLURAL_FORMS = 'nplurals=2; plural=(n != 1);'
 

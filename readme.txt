@@ -18,6 +18,7 @@ PrymeOperator brings the server file manager and the media library organiser int
 * Backups: the database and/or files (wp-content or the whole WordPress folder) in one ZIP, built in short steps so large sites do not time out.
 * Download, delete and restore the database from the new Backups tab. Restoring takes a safety backup first, rebuilds each table aside and swaps it in, keeps PrymeOperator active and keeps you logged in.
 * Automatic daily or weekly backups at night, keeping the number you choose.
+* "Folder" block and `[prymeoperator_folder]` shortcode: show a Media Library folder on the site as a gallery or a list of downloads.
 * WP-CLI: `wp prymeoperator backup|trash|folders|audit`.
 * More tests for the trash, file versions, the private vault and the backup file scanner.
 

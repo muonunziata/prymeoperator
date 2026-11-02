@@ -37,6 +37,7 @@ final class Plugin {
 		add_action( 'prymeoperator_settings_saved', [ self::class, 'schedule_backups' ] );
 
 		( new Integration() )->hooks();
+		( new \PrymeOperator\Frontend\FolderBlock() )->hooks();
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
 			\PrymeOperator\Cli\Command::register();

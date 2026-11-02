@@ -348,6 +348,28 @@ SINGULAR = {
     "Could not write the backup file list.": "No se pudo escribir la lista de archivos de la copia.",
     "The folder to back up must be inside the base folder.": "La carpeta a copiar debe estar dentro de la carpeta base.",
     "Restore stopped.": "Restauración detenida.",
+    # Folder block (assets/folder-block.js, src/Frontend)
+    "By name": "Por nombre",
+    "Choose a folder…": "Elige una carpeta…",
+    "Columns": "Columnas",
+    "Display": "Presentación",
+    "Full size": "Tamaño completo",
+    "Gallery": "Galería",
+    "Image size": "Tamaño de imagen",
+    "Include subfolders": "Incluir subcarpetas",
+    "Large": "Grande",
+    "List of downloads": "Lista de descargas",
+    "Maximum items": "Máximo de elementos",
+    "Medium": "Mediano",
+    "Newest first": "Más recientes primero",
+    "Order": "Orden",
+    "Random": "Aleatorio",
+    "Show as": "Mostrar como",
+    "Show captions": "Mostrar leyendas",
+    "Shows the files of a Media Library folder as a gallery or a list of downloads.": "Muestra los archivos de una carpeta de Medios como galería o como lista de descargas.",
+    "Thumbnail": "Miniatura",
+    "Choose a Media Library folder to show.": "Elige una carpeta de Medios para mostrarla.",
+    "This folder is empty.": "Esta carpeta está vacía.",
 }
 
 PLURAL = {

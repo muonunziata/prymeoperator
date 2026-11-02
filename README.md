@@ -27,6 +27,9 @@ Gestor de archivos profesional para WordPress, sin elFinder: explorador del serv
 - Descargar, borrar y restaurar la base de datos desde la pestaña Copias de seguridad. Antes de restaurar se hace una copia; cada tabla se reconstruye aparte y se cambia de golpe; el plugin sigue activo y no se cierra tu sesión.
 - Copias automáticas diarias o semanales, de noche, conservando las que elijas.
 
+**En el sitio**
+- Bloque «Carpeta» y shortcode `[prymeoperator_folder id="12" view="grid|list" columns="3" subfolders="yes"]`: muestra una carpeta de Medios como galería o como lista de descargas. Los adjuntos de entradas privadas o en borrador no se muestran.
+
 **WP-CLI**
 - `wp prymeoperator backup create|list|restore|delete`, `wp prymeoperator trash list|restore|empty`, `wp prymeoperator folders list|import-mediaflow`, `wp prymeoperator audit`.
 

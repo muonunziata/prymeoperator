@@ -186,8 +186,10 @@ final class Integration {
 			$clauses['join']  .= " LEFT JOIN {$it} AS po_fi ON po_fi.object_id = {$wpdb->posts}.ID";
 			$clauses['where'] .= ' AND po_fi.object_id IS NULL';
 		} else {
+			// One folder ID, or a list (a folder with its subfolders).
+			$ids = array_values( array_filter( array_map( 'intval', (array) $folder ) ) ) ?: [ 0 ];
 			$clauses['join']  .= " INNER JOIN {$it} AS po_fi ON po_fi.object_id = {$wpdb->posts}.ID";
-			$clauses['where'] .= $wpdb->prepare( ' AND po_fi.folder_id = %d', (int) $folder );
+			$clauses['where'] .= ' AND po_fi.folder_id IN (' . implode( ',', $ids ) . ')';
 		}
 		return $clauses;
 	}

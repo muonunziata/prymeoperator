@@ -1030,6 +1030,66 @@ msgstr "La carpeta a copiar debe estar dentro de la carpeta base."
 msgid "Restore stopped."
 msgstr "Restauración detenida."
 
+msgid "By name"
+msgstr "Por nombre"
+
+msgid "Choose a folder…"
+msgstr "Elige una carpeta…"
+
+msgid "Columns"
+msgstr "Columnas"
+
+msgid "Display"
+msgstr "Presentación"
+
+msgid "Full size"
+msgstr "Tamaño completo"
+
+msgid "Gallery"
+msgstr "Galería"
+
+msgid "Image size"
+msgstr "Tamaño de imagen"
+
+msgid "Include subfolders"
+msgstr "Incluir subcarpetas"
+
+msgid "Large"
+msgstr "Grande"
+
+msgid "List of downloads"
+msgstr "Lista de descargas"
+
+msgid "Maximum items"
+msgstr "Máximo de elementos"
+
+msgid "Medium"
+msgstr "Mediano"
+
+msgid "Newest first"
+msgstr "Más recientes primero"
+
+msgid "Order"
+msgstr "Orden"
+
+msgid "Random"
+msgstr "Aleatorio"
+
+msgid "Show as"
+msgstr "Mostrar como"
+
+msgid "Show captions"
+msgstr "Mostrar leyendas"
+
+msgid "Shows the files of a Media Library folder as a gallery or a list of downloads."
+msgstr "Muestra los archivos de una carpeta de Medios como galería o como lista de descargas."
+
+msgid "Thumbnail"
+msgstr "Miniatura"
+
+msgid "Choose a Media Library folder to show."
+msgstr "Elige una carpeta de Medios para mostrarla."
+
 msgid "%d earlier version"
 msgid_plural "%d earlier versions"
 msgstr[0] "%d versión anterior"
