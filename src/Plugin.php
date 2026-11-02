@@ -38,6 +38,10 @@ final class Plugin {
 
 		( new Integration() )->hooks();
 
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			\PrymeOperator\Cli\Command::register();
+		}
+
 		if ( is_admin() ) {
 			( new Page() )->hooks();
 		}

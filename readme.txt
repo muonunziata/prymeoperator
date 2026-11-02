@@ -2,7 +2,7 @@
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.1
-Stable tag: 0.3.0
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -13,6 +13,13 @@ Secure file operator for WordPress: server file manager, media library folders a
 PrymeOperator brings the server file manager and the media library organiser into one plugin, without elFinder. Every path is confined to an allowed root folder, every action is recorded in an audit log, and destructive operations will be reversible.
 
 == Changelog ==
+
+= 0.4.0 =
+* Backups: the database and/or files (wp-content or the whole WordPress folder) in one ZIP, built in short steps so large sites do not time out.
+* Download, delete and restore the database from the new Backups tab. Restoring takes a safety backup first, rebuilds each table aside and swaps it in, keeps PrymeOperator active and keeps you logged in.
+* Automatic daily or weekly backups at night, keeping the number you choose.
+* WP-CLI: `wp prymeoperator backup|trash|folders|audit`.
+* More tests for the trash, file versions, the private vault and the backup file scanner.
 
 = 0.3.0 =
 * Library folders: a folder sidebar on Media (grid and list), Pages, Posts and any other post type you enable in Settings.
