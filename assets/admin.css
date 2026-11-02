@@ -107,7 +107,7 @@
 .po-tabs .dashicons { font-size: 17px; width: 17px; height: 17px; }
 
 .po-main { padding: 0; min-height: 70vh; }
-.po-main > .po-dash, .po-main > .po-trash, .po-main > .po-activity, .po-main > .po-settings { padding: 20px; }
+.po-main > .po-dash, .po-main > .po-trash, .po-main > .po-activity, .po-main > .po-settings, .po-main > .po-backups { padding: 20px; }
 
 /* Toolbar */
 
@@ -369,3 +369,13 @@
 	.po-col-date { display: none; }
 	.po-wrap { margin-right: 10px; }
 }
+
+/* Backups */
+.po-backups .po-card .components-base-control { margin-bottom: 14px; }
+.po-backups__go { margin-top: 4px; }
+.po-backups__phase { margin: 0 0 10px; font-weight: 500; }
+.po-backups__error { color: var(--po-danger); }
+.po-progress--big { height: 10px; border-radius: 5px; }
+.po-backups__where { margin: 0 0 12px; }
+.po-backups__label { display: block; color: var(--po-muted); font-size: 12px; }
+.po-backups .po-col-name .po-name { white-space: normal; }

@@ -239,7 +239,7 @@ final class Operations {
 			}
 			$is_dir = str_ends_with( $name, '/' );
 			if ( ! $is_dir && $this->policy->is_blocked( $name ) ) {
-				throw new OperationException( sprintf( 'The archive contains a blocked file type: %s', basename( $name ) ), 415 );
+				throw new OperationException( sprintf( 'The archive contains a blocked file type: %s', basename( $name ) ), 415 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 			}
 			$total += (int) $stat['size'];
 			if ( $stat['comp_size'] > 0 && $stat['size'] > 10485760 && $stat['size'] / $stat['comp_size'] > self::ZIP_MAX_RATIO ) {

@@ -88,7 +88,7 @@ final class AdminController {
 		if ( ! Guard::is_full_admin() ) {
 			$mine = array_filter( Services::trash()->list(), static fn ( $i ) => $i['id'] === $id && (int) $i['user_id'] === get_current_user_id() );
 			if ( ! $mine ) {
-				throw new OperationException( __( 'You can only restore items you deleted.', 'prymeoperator' ), 403 );
+				throw new OperationException( __( 'You can only restore items you deleted.', 'prymeoperator' ), 403 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 			}
 		}
 		$path = Services::operations()->restore( $id );
@@ -121,6 +121,7 @@ final class AdminController {
 			'permissions'  => Settings::PERMISSIONS,
 			'default_root' => ABSPATH,
 			'root_locked'  => defined( 'PRYMEOPERATOR_ROOT' ),
+			'post_types'   => \PrymeOperator\Library\Integration::available_scopes(),
 		];
 	}
 

@@ -1,0 +1,8 @@
+# Left out of `git archive`, so the release ZIP only has what WordPress needs.
+/.github export-ignore
+/.wordpress-org export-ignore
+/bin export-ignore
+/tests export-ignore
+/composer.json export-ignore
+/.gitignore export-ignore
+/.gitattributes export-ignore

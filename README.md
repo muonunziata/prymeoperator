@@ -13,6 +13,26 @@ Gestor de archivos profesional para WordPress, sin elFinder: explorador del serv
 - Búsqueda por nombre y dentro del contenido de archivos de texto.
 - Vista previa de imágenes, PDF, vídeo y audio con navegación anterior/siguiente.
 
+**Biblioteca (carpetas virtuales)**
+- Barra de carpetas en Medios (cuadrícula y lista), Páginas, Entradas y cualquier otro tipo de contenido que actives en Ajustes.
+- Arrastrar filas o miniaturas a una carpeta; varias a la vez marcándolas (o con «Selección múltiple» en la cuadrícula). Arrastrar carpetas para anidarlas.
+- Subcarpetas, renombrar en línea, buscar carpeta, contadores, vista «Sin carpeta» y barra plegable que acompaña al scroll.
+- Lo que se sube con una carpeta abierta en Medios entra en esa carpeta.
+- Borrar una carpeta nunca borra contenido: sus elementos quedan sin carpeta y sus subcarpetas suben un nivel.
+- Editores y administradores organizan las carpetas; los autores archivan sus propios elementos. Todo queda en el registro de actividad.
+- Importación en un clic de las carpetas de MediaFlow Pro.
+
+**Copias de seguridad**
+- Base de datos y/o archivos (wp-content o todo WordPress) en un ZIP, por pasos cortos para que los sitios grandes no se corten.
+- Descargar, borrar y restaurar la base de datos desde la pestaña Copias de seguridad. Antes de restaurar se hace una copia; cada tabla se reconstruye aparte y se cambia de golpe; el plugin sigue activo y no se cierra tu sesión.
+- Copias automáticas diarias o semanales, de noche, conservando las que elijas.
+
+**En el sitio**
+- Bloque «Carpeta» y shortcode `[prymeoperator_folder id="12" view="grid|list" columns="3" subfolders="yes"]`: muestra una carpeta de Medios como galería o como lista de descargas. Los adjuntos de entradas privadas o en borrador no se muestran.
+
+**WP-CLI**
+- `wp prymeoperator backup create|list|restore|delete`, `wp prymeoperator trash list|restore|empty`, `wp prymeoperator folders list|import-mediaflow`, `wp prymeoperator audit`.
+
 **Red de seguridad**
 - Papelera real: borrar nunca destruye; botón «Deshacer» y restauración desde la pestaña Papelera.
 - Editor CodeMirror (el que trae WordPress) con resaltado para PHP, JS, CSS, HTML, SQL, Markdown…
@@ -43,14 +63,14 @@ La raíz por defecto es la instalación de WordPress (`ABSPATH`). Para fijarla d
 define( 'PRYMEOPERATOR_ROOT', '/ruta/permitida' );
 ```
 
-Filtros: `prymeoperator_server_root`, `prymeoperator_admin_capability`, `prymeoperator_vault_dir`.
+Filtros: `prymeoperator_server_root`, `prymeoperator_admin_capability`, `prymeoperator_vault_dir`, `prymeoperator_library_can_organise`, `prymeoperator_backup_exclude`, `prymeoperator_fix_list_layout`.
 
 La papelera, las versiones y las subidas temporales viven en `wp-content/prymeoperator-private/`, protegida contra acceso web.
 
 ## Desarrollo
 
 ```bash
-php tests/run.php          # pruebas unitarias (Jail, Operations, Crypto, Explorer)
+php tests/run.php          # pruebas unitarias (Jail, Operations, Crypto, Explorer, Tree, Papelera, Versiones, Vault, FileScanner)
 python3 bin/i18n/build.py  # regenerar traducciones desde bin/i18n/es.py
 ```
 

@@ -21,7 +21,7 @@ final class Audit {
 				'target'     => $target,
 				'meta'       => $meta ? wp_json_encode( $meta ) : null,
 				// Only REMOTE_ADDR: forwarded headers are client-controlled.
-				'ip'         => substr( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ), 0, 45 ),
+				'ip'         => substr( sanitize_text_field( wp_unslash( (string) ( $_SERVER['REMOTE_ADDR'] ?? '' ) ) ), 0, 45 ),
 				'created_at' => current_time( 'mysql', true ),
 			],
 			[ '%d', '%s', '%s', '%s', '%s', '%s' ]
@@ -45,7 +45,7 @@ final class Audit {
 		}
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
-		$total = (int) $wpdb->get_var( $args ? $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$where}", $args ) : "SELECT COUNT(*) FROM {$table}" );
+		$total = (int) $wpdb->get_var( $args ? $wpdb->prepare( "SELECT COUNT(*) FROM {$table} WHERE {$where}", $args ) : "SELECT COUNT(*) FROM {$table}" ); // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Prepared when there are arguments; otherwise no user input.
 		$rows  = $wpdb->get_results(
 			$wpdb->prepare( "SELECT * FROM {$table} WHERE {$where} ORDER BY id DESC LIMIT %d OFFSET %d", array_merge( $args, [ $per_page, $offset ] ) ),
 			ARRAY_A

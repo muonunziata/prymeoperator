@@ -16,13 +16,13 @@ sys.path.insert(0, HERE)
 from es import PLURAL, SINGULAR  # noqa: E402
 
 DOMAIN = 'prymeoperator'
-SCRIPT = 'assets/admin.js'
+SCRIPTS = ['assets/admin.js', 'assets/library.js', 'assets/folder-block.js']
 LOCALES = ['es_ES', 'es_MX', 'es_AR', 'es_CO', 'es_CL', 'es_PE', 'es_VE', 'es_UY', 'es_EC', 'es_GT', 'es_CR', 'es_DO', 'es_PR']
 PLURAL_FORMS = 'nplurals=2; plural=(n != 1);'
 
 
 def js_strings():
-    src = open(os.path.join(ROOT, SCRIPT), encoding='utf-8').read()
+    src = ''.join(open(os.path.join(ROOT, s), encoding='utf-8').read() for s in SCRIPTS)
     found = set(m.group(1) for m in re.finditer(r"__\(\s*'((?:[^'\\]|\\.)*)'\s*,\s*'prymeoperator'", src))
     found |= set(m.group(1) for m in re.finditer(r"_n\(\s*'((?:[^'\\]|\\.)*)'", src))
     return {s.replace("\\'", "'") for s in found}
@@ -63,7 +63,6 @@ def main():
 
     lang_dir = os.path.join(ROOT, 'languages')
     os.makedirs(lang_dir, exist_ok=True)
-    md5 = hashlib.md5(SCRIPT.encode()).hexdigest()
 
     for locale in LOCALES:
         header = 'Content-Type: text/plain; charset=UTF-8\nLanguage: %s\nPlural-Forms: %s\n' % (locale, PLURAL_FORMS)
@@ -88,8 +87,10 @@ def main():
         for single, (plural, t1, t2) in PLURAL.items():
             messages[single] = [t1, t2]
         payload = {'domain': 'messages', 'locale_data': {'messages': messages}}
-        with open(os.path.join(lang_dir, '%s-%s-%s.json' % (DOMAIN, locale, md5)), 'w', encoding='utf-8') as fh:
-            json.dump(payload, fh, ensure_ascii=False)
+        for script in SCRIPTS:
+            md5 = hashlib.md5(script.encode()).hexdigest()
+            with open(os.path.join(lang_dir, '%s-%s-%s.json' % (DOMAIN, locale, md5)), 'w', encoding='utf-8') as fh:
+                json.dump(payload, fh, ensure_ascii=False)
 
     print('Built %d locales, %d strings.' % (len(LOCALES), len(SINGULAR) + len(PLURAL)))
 

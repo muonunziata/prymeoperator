@@ -35,6 +35,10 @@ final class Settings {
 			'theme'                    => 'auto',
 			'default_view'             => 'list',
 			'delete_data_on_uninstall' => false,
+			'library_post_types'       => [ 'attachment', 'page', 'post' ],
+			'backup_schedule'          => 'off',
+			'backup_files'             => 'content',
+			'backup_keep'              => 5,
 		];
 	}
 
@@ -76,6 +80,9 @@ final class Settings {
 					$roles         = array_keys( wp_roles()->roles );
 					$clean[ $key ] = array_values( array_intersect( array_map( 'strval', (array) $value ), $roles ) );
 					break;
+				case 'library_post_types':
+					$clean[ $key ] = array_values( array_unique( array_filter( array_map( 'sanitize_key', (array) $value ), 'post_type_exists' ) ) );
+					break;
 				case 'role_permissions':
 					$clean[ $key ] = array_values( array_intersect( array_map( 'strval', (array) $value ), self::PERMISSIONS ) );
 					break;
@@ -95,6 +102,15 @@ final class Settings {
 				case 'default_view':
 					$clean[ $key ] = in_array( $value, [ 'list', 'grid' ], true ) ? $value : 'list';
 					break;
+				case 'backup_schedule':
+					$clean[ $key ] = in_array( $value, [ 'off', 'daily', 'weekly' ], true ) ? $value : 'off';
+					break;
+				case 'backup_files':
+					$clean[ $key ] = in_array( $value, [ 'none', 'content', 'all' ], true ) ? $value : 'content';
+					break;
+				case 'backup_keep':
+					$clean[ $key ] = max( 1, min( 100, (int) $value ) );
+					break;
 				case 'max_upload_mb':
 				case 'versions_keep':
 				case 'trash_days':
@@ -106,6 +122,7 @@ final class Settings {
 		}
 
 		update_option( self::OPTION, $clean, false );
+		do_action( 'prymeoperator_settings_saved', $clean );
 		return $clean;
 	}
 

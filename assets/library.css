@@ -1,0 +1,339 @@
+/* PrymeOperator Library: folder sidebar on Media, Pages and Posts. */
+
+#wpbody-content.po-lib-host {
+	--po-lib-w: 264px;
+	position: relative;
+	box-sizing: border-box;
+	padding-left: calc(var(--po-lib-w) + 20px);
+}
+#wpbody-content.po-lib-host.po-lib-collapsed {
+	--po-lib-w: 36px;
+}
+
+.po-lib {
+	position: absolute;
+	top: 10px;
+	bottom: 0;
+	left: 0;
+	width: var(--po-lib-w);
+}
+.po-lib__panel {
+	position: sticky;
+	top: calc(var(--wp-admin--admin-bar--height, 32px) + 10px);
+	max-height: calc(100vh - var(--wp-admin--admin-bar--height, 32px) - 20px);
+	overflow-y: auto;
+	box-sizing: border-box;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	padding: 12px 10px 10px;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+}
+.po-lib.is-collapsed .po-lib__panel {
+	padding: 6px 4px;
+	overflow: visible;
+}
+
+.po-lib__head {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 10px;
+}
+.po-lib__title {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex: 1;
+	margin: 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #1d2327;
+}
+.po-lib__title .dashicons {
+	color: #2271b1;
+}
+.po-lib__new.button {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+}
+.po-lib__new .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+.po-lib__toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 26px;
+	height: 26px;
+	padding: 0;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: #50575e;
+	cursor: pointer;
+}
+.po-lib__toggle:hover,
+.po-lib__toggle:focus-visible {
+	background: #f0f0f1;
+	color: #1d2327;
+}
+
+.po-lib__search {
+	width: 100%;
+	margin: 0 0 8px;
+}
+
+.po-lib__tree {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.po-lib__row {
+	--depth: 0;
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 32px;
+	margin: 1px 0;
+	padding-left: calc(var(--depth) * 16px);
+	border-radius: 6px;
+	color: #1d2327;
+}
+.po-lib__row:hover {
+	background: #f6f7f7;
+}
+.po-lib__row.is-active {
+	background: #e7f0f9;
+	color: #135e96;
+}
+.po-lib__row.is-drop {
+	background: #d6e8f8;
+	box-shadow: inset 0 0 0 2px #2271b1;
+}
+.po-lib__caret,
+.po-lib__caret-space {
+	flex: 0 0 20px;
+	width: 20px;
+	height: 20px;
+}
+.po-lib__caret {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #787c82;
+	cursor: pointer;
+}
+.po-lib__caret .dashicons {
+	font-size: 14px;
+	width: 14px;
+	height: 14px;
+	transition: transform .12s ease;
+}
+.po-lib__caret.is-open .dashicons {
+	transform: rotate(90deg);
+}
+.po-lib__name {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex: 1;
+	min-width: 0;
+	padding: 6px 4px;
+	border: 0;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+.po-lib__name:focus-visible,
+.po-lib__caret:focus-visible,
+.po-lib__act:focus-visible {
+	outline: 2px solid #2271b1;
+	outline-offset: -2px;
+	border-radius: 4px;
+}
+.po-lib__name .dashicons {
+	flex: 0 0 auto;
+	color: #dba617;
+}
+.po-lib__row--special .po-lib__name .dashicons {
+	color: #50575e;
+}
+.po-lib__row.is-active .po-lib__name {
+	font-weight: 600;
+}
+.po-lib__label {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.po-lib__count {
+	flex: 0 0 auto;
+	min-width: 18px;
+	margin-right: 6px;
+	padding: 0 6px;
+	border-radius: 9px;
+	background: #f0f0f1;
+	color: #50575e;
+	font-size: 11px;
+	line-height: 18px;
+	text-align: center;
+}
+.po-lib__row.is-active .po-lib__count {
+	background: #2271b1;
+	color: #fff;
+}
+.po-lib__acts {
+	display: none;
+	position: absolute;
+	top: 50%;
+	right: 4px;
+	transform: translateY(-50%);
+	padding-left: 8px;
+	background: inherit;
+	border-radius: 6px;
+}
+.po-lib__row:hover .po-lib__acts,
+.po-lib__row:focus-within .po-lib__acts {
+	display: flex;
+}
+.po-lib__row:hover .po-lib__count,
+.po-lib__row:focus-within .po-lib__count {
+	visibility: hidden;
+}
+.po-lib__row--special:hover .po-lib__count {
+	visibility: visible;
+}
+.po-lib__act {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: #50575e;
+	cursor: pointer;
+}
+.po-lib__act:hover {
+	background: #fff;
+	color: #2271b1;
+}
+.po-lib__act .dashicons {
+	font-size: 16px;
+	width: 16px;
+	height: 16px;
+}
+.po-lib__row--edit {
+	gap: 6px;
+	padding-left: calc(var(--depth) * 16px + 24px);
+	padding-right: 4px;
+}
+.po-lib__row--edit .dashicons {
+	color: #dba617;
+}
+.po-lib__input {
+	flex: 1;
+	min-width: 0;
+	min-height: 28px !important;
+}
+.po-lib__sep {
+	height: 1px;
+	margin: 6px 4px;
+	background: #f0f0f1;
+}
+.po-lib__empty,
+.po-lib__hint,
+.po-lib__foot {
+	margin: 10px 4px 0;
+	color: #646970;
+	font-size: 12px;
+	line-height: 1.5;
+}
+.po-lib__hint {
+	padding-top: 8px;
+	border-top: 1px solid #f0f0f1;
+}
+
+/* Dragging */
+body.po-lib-dragging .po-lib__panel {
+	box-shadow: 0 0 0 2px #72aee6;
+}
+#the-list > tr[draggable="true"] {
+	cursor: grab;
+}
+#the-list > tr.po-lib-leaving {
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+#po-lib-ghost {
+	position: fixed;
+	top: -100px;
+	left: -100px;
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 10px;
+	border-radius: 14px;
+	background: #2271b1;
+	color: #fff;
+	font-size: 12px;
+	font-weight: 600;
+}
+
+/* Notices */
+#po-lib-toast {
+	position: fixed;
+	right: 20px;
+	bottom: 20px;
+	z-index: 160000;
+	max-width: 380px;
+	padding: 10px 14px;
+	border-radius: 6px;
+	background: #1d2327;
+	color: #fff;
+	font-size: 13px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+	opacity: 0;
+	transform: translateY(8px);
+	pointer-events: none;
+	transition: opacity .2s ease, transform .2s ease;
+}
+#po-lib-toast.is-visible {
+	opacity: 1;
+	transform: none;
+}
+#po-lib-toast.is-error {
+	background: #b32d2e;
+}
+
+@media (max-width: 782px) {
+	#wpbody-content.po-lib-host {
+		padding-left: 0;
+	}
+	.po-lib {
+		position: static;
+		width: auto;
+		margin: 10px 10px 0 0;
+	}
+	.po-lib__panel {
+		position: static;
+		max-height: none;
+	}
+}
+
+/* The grid toolbar is sized for the full screen width; leave room for the sidebar. */
+.po-lib-host .media-frame.mode-grid .media-toolbar input[type="search"] {
+	width: 180px;
+	max-width: 100%;
+}
