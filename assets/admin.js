@@ -1089,7 +1089,7 @@
 						! busy && h( Button, { variant: 'secondary', onClick: () => setJob( null ) }, __( 'Close', 'prymeoperator' ) )
 					) : h( Fragment, null,
 						h( 'p', null, data.next ? sprintf( __( 'Next automatic backup: %s', 'prymeoperator' ), formatDate( data.next ) ) : __( 'Automatic backups are off.', 'prymeoperator' ) ),
-						h( 'p', { className: 'po-muted' }, __( 'Turn them on and choose how many to keep in Settings.', 'prymeoperator' ) )
+						h( 'p', { className: 'po-muted' }, data.next ? __( 'Change the frequency and how many to keep in Settings.', 'prymeoperator' ) : __( 'Turn them on and choose how many to keep in Settings.', 'prymeoperator' ) )
 					)
 				)
 			),

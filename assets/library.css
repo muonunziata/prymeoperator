@@ -331,3 +331,9 @@ body.po-lib-dragging .po-lib__panel {
 		max-height: none;
 	}
 }
+
+/* The grid toolbar is sized for the full screen width; leave room for the sidebar. */
+.po-lib-host .media-frame.mode-grid .media-toolbar input[type="search"] {
+	width: 180px;
+	max-width: 100%;
+}

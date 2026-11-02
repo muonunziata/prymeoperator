@@ -1,4 +1,6 @@
-=== PrymeOperator ===
+=== PrymeOperator – File Manager, Media Folders & Backups ===
+Contributors: prymeoperator
+Tags: file manager, media folders, backup, media library, organize
 Requires at least: 6.4
 Tested up to: 6.8
 Requires PHP: 8.1
@@ -6,11 +8,106 @@ Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Secure file operator for WordPress: server file manager, media library folders and reversible, audited operations.
+A safe file manager, media and post folders, and site backups in one plugin. Deleting is undoable, edits are versioned and everything is logged.
 
 == Description ==
 
-PrymeOperator brings the server file manager and the media library organiser into one plugin, without elFinder. Every path is confined to an allowed root folder, every action is recorded in an audit log, and destructive operations will be reversible.
+PrymeOperator brings a server file manager, a folder organiser for the Media Library and your posts, and site backups into one plugin, built around one idea: **nothing you do should be impossible to undo.**
+
+= File manager =
+
+* Folder tree, list and grid views, breadcrumbs, sorting, multiple selection, context menu and keyboard shortcuts.
+* Upload by drag and drop, in pieces, so large files work without touching `php.ini`.
+* Create, rename, duplicate, copy, move, ZIP and unzip, download (folders as ZIP), visual permissions (chmod) and properties.
+* Search by name and inside text files. Preview images, PDF, video and audio.
+* Code editor (the CodeMirror bundled with WordPress) with highlighting for PHP, JS, CSS, HTML, SQL and Markdown.
+
+= Safety net =
+
+* **Real trash:** deleting never destroys. Undo right away, or restore later from the Trash tab.
+* **Versions** of every file edited, which you can bring back from the editor.
+* **PHP syntax check** before saving, and **automatic rollback** if a PHP change breaks the site.
+* **Activity log** of who did what, where and when.
+
+= Library folders =
+
+* A folder sidebar on Media (grid and list), Pages, Posts and any other post type you enable.
+* Drag rows or thumbnails onto a folder; several at once. Nest folders by dragging them.
+* Files uploaded while a folder is open go into it.
+* Folders are virtual: files and URLs never change, and deleting a folder never deletes content.
+* One-click import from MediaFlow Pro.
+
+= Backups =
+
+* The database and/or files (wp-content or the whole WordPress folder) in one ZIP, built in short steps so large sites do not time out.
+* Download, delete and restore the database. A safety copy is taken first, so a restore can be undone too.
+* Automatic daily or weekly backups at night, keeping as many as you choose.
+
+= On your site =
+
+* "Folder" block and `[prymeoperator_folder]` shortcode: show a Media Library folder as a gallery or a list of downloads.
+
+= Security =
+
+* Every path is confined to an allowed root folder with `realpath()`: `../`, null bytes and symbolic links that lead outside are refused.
+* ZIP protection against zip slip, symbolic links, zip bombs and blocked file types.
+* Blocked file types are checked on every extension, so `shell.php.jpg` counts as PHP.
+* Downloads are served with `nosniff` and a sandboxing Content Security Policy.
+* Respects `DISALLOW_FILE_MODS` and `DISALLOW_FILE_EDIT`.
+* Trash, versions and backups live in a private folder denied to web requests.
+
+= Access for other roles =
+
+Administrators always have full access. You can let other roles use the file manager inside their own folder, with only the actions you allow. They can never edit code, change permissions or upload blocked file types.
+
+= WP-CLI =
+
+`wp prymeoperator backup create|list|restore|delete`, `wp prymeoperator trash list|restore|empty`, `wp prymeoperator folders list|import-mediaflow` and `wp prymeoperator audit`.
+
+== Installation ==
+
+1. Upload the plugin through **Plugins → Add New → Upload Plugin**, or search for "PrymeOperator".
+2. Activate it.
+3. Open **PrymeOperator** in the admin menu. Folders appear on Media, Pages and Posts straight away.
+
+To lock the file manager to one folder, add this to `wp-config.php`:
+
+`define( 'PRYMEOPERATOR_ROOT', '/absolute/path/to/folder' );`
+
+== Frequently Asked Questions ==
+
+= Does deleting a file really delete it? =
+
+No. It goes to PrymeOperator's trash, from where you can restore it until it expires (30 days by default, configurable) or until an administrator empties the trash.
+
+= What happens if I break the site editing a PHP file? =
+
+PrymeOperator checks the syntax before saving. After saving, it loads the site once; if that fails, it puts the previous version back automatically.
+
+= Do folders move my files? =
+
+No. Library folders are virtual, so file paths and URLs never change. Deleting a folder only takes its items out of it.
+
+= Where are backups stored? Are they safe? =
+
+In `wp-content/prymeoperator-private/backups/`, which is denied to web requests. Download important backups and keep a copy elsewhere too.
+
+= Can I restore files from a backup? =
+
+The database can be restored with one click. Files are in the `files/` folder of the downloaded ZIP; you can extract the ones you need with the file manager.
+
+= Which hooks can I use? =
+
+Filters: `prymeoperator_server_root`, `prymeoperator_admin_capability`, `prymeoperator_vault_dir`, `prymeoperator_library_can_organise`, `prymeoperator_backup_exclude` and `prymeoperator_fix_list_layout`.
+
+== Screenshots ==
+
+1. The file manager with the folder tree, list view and context menu.
+2. The code editor with versions and syntax check.
+3. Folders on the Media Library.
+4. Folders on the Pages list: drag rows onto a folder.
+5. Backups: create, download and restore.
+6. The dashboard with disk space, trash and recent activity.
 
 == Changelog ==
 

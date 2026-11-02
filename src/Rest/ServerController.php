@@ -209,7 +209,8 @@ final class ServerController {
 		if ( $is_php && Settings::get( 'php_lint' ) ) {
 			$error = Operations::lint_php( $content );
 			if ( null !== $error ) {
-				throw new OperationException( sprintf( __( 'Not saved: PHP syntax error. %s', 'prymeoperator' ), $error ), 422 );
+				/* translators: %s: the PHP error message. */
+				throw new OperationException( sprintf( __( 'Not saved: PHP syntax error. %s', 'prymeoperator' ), $error ), 422 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 			}
 		}
 
@@ -223,7 +224,7 @@ final class ServerController {
 			if ( false === $check ) {
 				$ops->write( $path, $ops->version_content( $path, $version['id'] ) );
 				Audit::log( 'server.rollback', $path, [ 'version' => $version['id'] ] );
-				throw new OperationException( __( 'This change broke the site, so the previous version was restored automatically.', 'prymeoperator' ), 409 );
+				throw new OperationException( __( 'This change broke the site, so the previous version was restored automatically.', 'prymeoperator' ), 409 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 			}
 			if ( null === $check ) {
 				$warning = __( 'Saved, but the site could not be checked after saving.', 'prymeoperator' );
@@ -255,7 +256,7 @@ final class ServerController {
 	private function upload( WP_REST_Request $r ): array {
 		$files = $r->get_file_params();
 		if ( empty( $files['chunk']['tmp_name'] ) || ! is_uploaded_file( $files['chunk']['tmp_name'] ) || UPLOAD_ERR_OK !== (int) $files['chunk']['error'] ) {
-			throw new OperationException( __( 'Upload failed.', 'prymeoperator' ), 400 );
+			throw new OperationException( __( 'Upload failed.', 'prymeoperator' ), 400 ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 		}
 		$result = Services::operations()->upload_chunk(
 			(string) $r['path'],

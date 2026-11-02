@@ -96,7 +96,7 @@ final class Command {
 		try {
 			switch ( $action ) {
 				case 'create':
-					$job = $backups->start( (string) $assoc['files'], ! Utils\get_flag_value( $assoc, 'no-database', false ), (string) ( $assoc['label'] ?? '' ) );
+					$job = $backups->start( (string) $assoc['files'], ! Utils\get_flag_value( $assoc, 'no-database', false ), (string) ( $assoc['label'] ?? '' ), false, get_current_user_id() );
 					Audit::log( 'backup.start', $job['id'], [ 'cli' => true ] );
 					$result = self::drive( $backups, $job['id'], 'Creating backup' );
 					Audit::log( 'backup.done', $job['id'], [ 'cli' => true ] );
@@ -123,7 +123,7 @@ final class Command {
 				case 'restore':
 					self::need_id( $id );
 					WP_CLI::confirm( "Restore the database from backup {$id}? Everything written since then is replaced (a safety backup is made first).", $assoc );
-					$job = $backups->restore_start( $id );
+					$job = $backups->restore_start( $id, get_current_user_id() );
 					Audit::log( 'backup.restore', $id, [ 'cli' => true, 'safety' => $job['safety'] ] );
 					self::drive( $backups, $job['id'], 'Restoring database' );
 					Audit::log( 'backup.restored', $id, [ 'cli' => true ] );

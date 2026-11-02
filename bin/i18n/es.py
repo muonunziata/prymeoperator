@@ -333,6 +333,7 @@ SINGULAR = {
     "Taking a safety copy of the current database…": "Haciendo una copia de seguridad de la base de datos actual…",
     "The backup from %s will be deleted permanently. This cannot be undone.": "La copia del %s se eliminará para siempre. No se puede deshacer.",
     "The database will go back to how it was on %s. Everything written since then (posts, orders, comments, settings) will be replaced. A safety copy of the current database is made first, so you can undo this.": "La base de datos volverá a como estaba el %s. Todo lo escrito desde entonces (entradas, pedidos, comentarios, ajustes) se sustituirá. Antes se hace una copia de la base de datos actual, así que podrás deshacerlo.",
+    "Change the frequency and how many to keep in Settings.": "Cambia la frecuencia y cuántas conservar en Ajustes.",
     "Turn them on and choose how many to keep in Settings.": "Actívalas y elige cuántas conservar en Ajustes.",
     "e.g. Before updating the theme": "p. ej. Antes de actualizar el tema",
     "wp-content folder": "Carpeta wp-content",

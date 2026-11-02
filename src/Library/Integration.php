@@ -121,7 +121,7 @@ final class Integration {
 		}
 
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$current = self::parse( wp_unslash( $_GET[ self::PARAM ] ?? null ) );
+		$current = self::parse( sanitize_text_field( wp_unslash( (string) ( $_GET[ self::PARAM ] ?? '' ) ) ) );
 		$mode    = 'list';
 		if ( 'attachment' === $scope ) {
 			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
@@ -152,7 +152,7 @@ final class Integration {
 			return;
 		}
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$folder = self::parse( wp_unslash( $_GET[ self::PARAM ] ?? null ) );
+		$folder = self::parse( sanitize_text_field( wp_unslash( (string) ( $_GET[ self::PARAM ] ?? '' ) ) ) );
 		$scope  = $this->screen_scope();
 		if ( null !== $folder && $scope && self::can_manage( $scope ) ) {
 			$query->set( self::PARAM, $folder );
@@ -164,7 +164,7 @@ final class Integration {
 	 */
 	public function media_grid_query( array $args ): array {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$raw    = isset( $_REQUEST['query'] ) && is_array( $_REQUEST['query'] ) ? wp_unslash( $_REQUEST['query'][ self::PARAM ] ?? null ) : null;
+		$raw    = isset( $_REQUEST['query'] ) && is_array( $_REQUEST['query'] ) ? sanitize_text_field( wp_unslash( (string) ( $_REQUEST['query'][ self::PARAM ] ?? '' ) ) ) : null;
 		$folder = self::parse( $raw );
 		if ( null !== $folder && self::can_manage( 'attachment' ) ) {
 			$args[ self::PARAM ] = $folder;
@@ -199,7 +199,7 @@ final class Integration {
 	 */
 	public function file_upload( int $post_id ): void {
 		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- async-upload.php checks its own nonce.
-		$folder = self::parse( wp_unslash( $_POST[ self::PARAM ] ?? null ) );
+		$folder = self::parse( sanitize_text_field( wp_unslash( (string) ( $_POST[ self::PARAM ] ?? '' ) ) ) );
 		if ( ! is_int( $folder ) || ! self::can_manage( 'attachment' ) ) {
 			return;
 		}

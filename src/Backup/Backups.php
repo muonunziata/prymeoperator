@@ -323,7 +323,7 @@ final class Backups {
 				}
 			}
 			if ( false === $wpdb->query( $line ) ) { // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery
-				throw new BackupException( 'The database could not be restored: ' . $wpdb->last_error );
+				throw new BackupException( 'The database could not be restored: ' . $wpdb->last_error ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 			}
 			++$done;
 			++$state['statements'];
@@ -356,9 +356,10 @@ final class Backups {
 		$wpdb->query( "ALTER TABLE {$temp} RENAME TO {$live}" );
 		if ( ! $this->table_exists( $live ) ) {
 			// Some database drop-ins (SQLite) accept the rename but ignore it: copy instead.
+			// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- The CREATE statement comes from this site's own backup.
 			if ( empty( $state['create'] ) || false === $wpdb->query( (string) $state['create'] )
 				|| false === $wpdb->query( "INSERT INTO {$live} SELECT * FROM {$temp}" ) ) {
-				throw new BackupException( 'The database could not be restored: ' . $wpdb->last_error );
+				throw new BackupException( 'The database could not be restored: ' . $wpdb->last_error ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Sent as REST JSON, never printed as HTML.
 			}
 			$wpdb->query( "DROP TABLE IF EXISTS {$temp}" );
 		}

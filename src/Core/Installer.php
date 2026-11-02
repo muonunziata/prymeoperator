@@ -86,7 +86,7 @@ final class Installer {
 			\PrymeOperator\Server\Fs::remove( $vault->base() );
 		}
 		foreach ( [ 'prymeoperator_audit', 'prymeoperator_folders', 'prymeoperator_folder_items' ] as $table ) {
-			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery
+			$wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}{$table}" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Fixed table names.
 		}
 		delete_option( 'prymeoperator_mediaflow_map' );
 		delete_option( self::OPTION );

@@ -985,6 +985,9 @@ msgstr "La copia del %s se eliminará para siempre. No se puede deshacer."
 msgid "The database will go back to how it was on %s. Everything written since then (posts, orders, comments, settings) will be replaced. A safety copy of the current database is made first, so you can undo this."
 msgstr "La base de datos volverá a como estaba el %s. Todo lo escrito desde entonces (entradas, pedidos, comentarios, ajustes) se sustituirá. Antes se hace una copia de la base de datos actual, así que podrás deshacerlo."
 
+msgid "Change the frequency and how many to keep in Settings."
+msgstr "Cambia la frecuencia y cuántas conservar en Ajustes."
+
 msgid "Turn them on and choose how many to keep in Settings."
 msgstr "Actívalas y elige cuántas conservar en Ajustes."
 
